@@ -9,49 +9,41 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "PureLanding - Beautiful Shadcn UI Landing Page",
+  title: "Shollu - Bersama Meraih Keberkahan: Hafalan, Itikaf, & Sholat Berjamaah",
   description:
-    "A beautiful landing page built with Shadcn UI, Next.js 15, Tailwind CSS, and Shadcn UI Blocks.",
+    "Selamat datang di platform resmi untuk tiga program utama kami: Pejuang Quran, Pejuang Itikaf, dan Sholat Champion. Mari berkontribusi dalam memperbanyak amal ibadah dan mencatat perjalanan spiritual Anda dengan sistem modern berbasis QR Code.",
   keywords: [
-    "PureLanding",
-    "PureLanding Landing Page",
-    "PureLanding Landing Page Template",
-    "PureLanding Page",
-    "Shadcn UI Landing Page",
-    "Shadcn UI Blocks",
-    "Shadcn UI",
-    "Landing Page",
-    "Tailwind CSS Landing Page",
-    "Beautiful Shadcn UI Landing Page",
-    "Next.js 15 Landing Page",
-    "Simple Landing Page",
-    "Landing Page Template",
-    "Landing Page Design",
+    "Shollu",
+    "Sholat Champion",
+    "Pejuang Quran",
+    "Pejuang Itikaf",
+    "Itikaf",
+    "Sumatera Barat",
   ],
   openGraph: {
     type: "website",
-    siteName: "PureLanding",
+    siteName: "Shollu",
     locale: "en_US",
-    url: "https://shadcn-landing-page.vercel.app",
-    title: "PureLanding - Beautiful Shadcn UI Landing Page",
+    url: "https://shollu.com",
+    title: "Shollu - Bersama Meraih Keberkahan: Hafalan, Itikaf, & Sholat Berjamaah",
     description:
-      "A beautiful landing page built with Shadcn UI, Next.js 15, Tailwind CSS, and Shadcn UI Blocks.",
+      "Selamat datang di platform resmi untuk tiga program utama kami: Pejuang Quran, Pejuang Itikaf, dan Sholat Champion. Mari berkontribusi dalam memperbanyak amal ibadah dan mencatat perjalanan spiritual Anda dengan sistem modern berbasis QR Code.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/favicon.png",
         width: 1200,
         height: 630,
-        alt: "PureLanding Preview",
+        alt: "Shollu",
       },
     ],
   },
   authors: [
     {
-      name: "Akash Moradiya",
-      url: "https://shadcnui-blocks.com",
+      name: "Dhany Dwi Putra",
+      url: "https://shollu.com",
     },
   ],
-  creator: "Akash Moradiya",
+  creator: "Dhany Dwi Putra",
   icons: [
     {
       rel: "icon",
@@ -59,30 +51,30 @@ export const metadata: Metadata = {
     },
     {
       rel: "apple-touch-icon",
-      url: "/apple-touch-icon.png",
+      url: "/favicon.png",
     },
     {
       rel: "icon",
       type: "image/png",
-      url: "/favicon-32x32.png",
+      url: "/favicon.png",
       sizes: "32x32",
     },
     {
       rel: "icon",
       type: "image/png",
-      url: "/favicon-16x16.png",
+      url: "/favicon.png",
       sizes: "16x16",
     },
     {
       rel: "icon",
       type: "image/png",
-      url: "/android-chrome-192x192.png",
+      url: "/favicon.png",
       sizes: "192x192",
     },
     {
       rel: "icon",
       type: "image/png",
-      url: "/android-chrome-512x512.png",
+      url: "/favicon.png",
       sizes: "512x512",
     },
   ],

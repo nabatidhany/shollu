@@ -7,59 +7,51 @@ import React, { ComponentProps } from "react";
 const testimonials = [
   {
     id: 1,
-    name: "John Doe",
-    designation: "Software Engineer",
-    company: "TechCorp",
+    name: "Ahmad Fadilah",
+    designation: "Peserta Pejuang Quran",
+    company: "Masjid Al-Falah",
     testimonial:
-      "This product has completely transformed the way we work. The efficiency and ease of use are unmatched!",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
+      "Program Pejuang Quran sangat membantu saya dalam meningkatkan hafalan. Suasananya nyaman dan penuh semangat!",
+    avatar: "https://randomuser.me/api/portraits/men/10.jpg",
   },
   {
     id: 2,
-    name: "Sophia Lee",
-    designation: "Data Analyst",
-    company: "InsightTech",
+    name: "Siti Aisyah",
+    designation: "Peserta Pejuang Itikaf",
+    company: "Masjid An-Nur",
     testimonial:
-      "This tool has saved me hours of work! The analytics and reporting features are incredibly powerful.",
-    avatar: "https://randomuser.me/api/portraits/women/6.jpg",
+      "Itikaf di masjid rekanan ini benar-benar membawa ketenangan. Sistem QR untuk absensi juga memudahkan sekali!",
+    avatar: "https://randomuser.me/api/portraits/women/15.jpg",
   },
   {
     id: 3,
-    name: "Michael Johnson",
-    designation: "UX Designer",
-    company: "DesignPro",
+    name: "Rizky Maulana",
+    designation: "Peserta Sholat Champion",
+    company: "Masjid At-Taqwa",
     testimonial:
-      "An amazing tool that simplifies complex tasks. Highly recommended for professionals in the industry.",
-    avatar: "https://randomuser.me/api/portraits/men/3.jpg",
+      "Kompetisi Sholat Champion membuat saya lebih bersemangat datang lebih awal ke masjid. Benar-benar seru dan bermanfaat!",
+    avatar: "https://randomuser.me/api/portraits/men/12.jpg",
   },
   {
     id: 4,
-    name: "Emily Davis",
-    designation: "Marketing Specialist",
-    company: "BrandBoost",
+    name: "Fatimah Zahra",
+    designation: "Orang Tua Peserta",
+    company: "Masjid Al-Hikmah",
     testimonial:
-      "I've seen a significant improvement in our team's productivity since we started using this service.",
-    avatar: "https://randomuser.me/api/portraits/women/4.jpg",
+      "Anak saya sangat termotivasi untuk lebih rajin sholat dan menghafal Quran. Terima kasih atas program luar biasa ini!",
+    avatar: "https://randomuser.me/api/portraits/women/20.jpg",
   },
   {
     id: 5,
-    name: "Daniel Martinez",
-    designation: "Full-Stack Developer",
-    company: "CodeCrafters",
+    name: "Ustadz Hidayat",
+    designation: "Panitia Pejuang Itikaf",
+    company: "Masjid Al-Ikhlas",
     testimonial:
-      "The best investment we've made! The support team is also super responsive and helpful.",
-    avatar: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    id: 6,
-    name: "Jane Smith",
-    designation: "Product Manager",
-    company: "InnovateX",
-    testimonial:
-      "The user experience is top-notch! The interface is clean, intuitive, and easy to navigate.",
-    avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+      "Sistem yang digunakan dalam program ini sangat membantu kami dalam mengelola peserta. InsyaAllah tahun depan lebih banyak lagi yang ikut!",
+    avatar: "https://randomuser.me/api/portraits/men/14.jpg",
   },
 ];
+
 
 const Testimonials = () => (
   <div id="testimonials" className="flex justify-center items-center py-20">
@@ -99,29 +91,9 @@ const TestimonialList = () =>
             <p className="text-sm text-gray-500">{testimonial.designation}</p>
           </div>
         </div>
-        <Button variant="ghost" size="icon" asChild>
-          <Link href="#" target="_blank">
-            <TwitterLogo className="w-4 h-4" />
-          </Link>
-        </Button>
       </div>
       <p className="mt-5 text-[17px]">{testimonial.testimonial}</p>
     </div>
   ));
-
-const TwitterLogo = (props: ComponentProps<"svg">) => (
-  <svg
-    role="img"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
-    <title>X</title>
-    <path
-      fill="currentColor"
-      d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
-    />
-  </svg>
-);
 
 export default Testimonials;

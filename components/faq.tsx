@@ -5,44 +5,66 @@ import {
   Truck,
   Undo2,
   UserRoundCheck,
+  Users,
+  Ticket,
+  MapPin,
+  BookOpen,
+  Trophy,
+  Layers,
+  Gift,
+  CreditCard,
 } from "lucide-react";
 
 const faq = [
   {
-    icon: Undo2,
-    question: "What is your return policy?",
-    answer:
-      "You can return unused items in their original packaging within 30 days for a refund or exchange. Contact support for assistance.",
-  },
-  {
-    icon: Route,
-    question: "How do I track my order?",
-    answer:
-      "Track your order using the link provided in your confirmation email, or log into your account to view tracking details.",
-  },
-  {
-    icon: Truck,
-    question: "Do you ship internationally?",
-    answer:
-      "Yes, we ship worldwide. Shipping fees and delivery times vary by location, and customs duties may apply for some countries.",
-  },
-  {
     icon: BadgeDollarSign,
-    question: "What payment methods do you accept?",
-    answer:
-      "We accept Visa, MasterCard, American Express, PayPal, Apple Pay, and Google Pay, ensuring secure payment options for all customers.",
-  },
-  {
-    icon: ShieldCheck,
-    question: "What if I receive a damaged item?",
-    answer:
-      "Please contact our support team within 48 hours of delivery with photos of the damaged item. We’ll arrange a replacement or refund.",
+    question: "Apakah program ini berbayar?",
+    answer: "Tidak, semua program ini gratis dan terbuka untuk umum.",
   },
   {
     icon: UserRoundCheck,
-    question: "How can I contact customer support?",
-    answer:
-      "Reach out via email at support@example.com or call us at 1-800-123-4567 for assistance with any inquiries.",
+    question: "Bagaimana cara mendaftar Pejuang Itikaf?",
+    answer: "Anda bisa mendaftar melalui formulir online di website ini. Klik tombol 'Daftar Sekarang' pada halaman event Itikaf untuk mengisi formulir pendaftaran.",
+  },
+  {
+    icon: Users,
+    question: "Apakah anak-anak bisa ikut Pejuang Itikaf?",
+    answer: "Bisa, namun harus didampingi oleh orang tua atau wali.",
+  },
+  {
+    icon: Ticket,
+    question: "Bagaimana cara mendapatkan kupon sahur gratis?",
+    answer: "Setelah scan QR saat absensi masuk, sistem akan otomatis mencetak kupon sahur yang bisa ditukarkan di lokasi sahur gratis.",
+  },
+  {
+    icon: MapPin,
+    question: "Apakah Pejuang Quran harus dilakukan di masjid tertentu?",
+    answer: "Ya, kegiatan ini hanya bisa dilakukan di masjid-masjid rekanan yang sudah terdaftar dalam sistem.",
+  },
+  {
+    icon: BookOpen,
+    question: "Apakah peserta harus membawa Al-Qur'an sendiri?",
+    answer: "Disarankan untuk membawa Al-Qur'an sendiri, tetapi beberapa masjid juga menyediakan mushaf untuk digunakan.",
+  },
+  {
+    icon: Trophy,
+    question: "Bagaimana cara menentukan pemenang Sholat Champion?",
+    answer: "Pemenang ditentukan berdasarkan jumlah kehadiran dan kecepatan dalam menghadiri sholat berjamaah di masjid.",
+  },
+  {
+    icon: Layers,
+    question: "Bisakah saya mengikuti lebih dari satu program?",
+    answer: "Tentu, Anda bisa mengikuti lebih dari satu program selama jadwalnya tidak bertabrakan.",
+  },
+  {
+    icon: Gift,
+    question: "Apakah ada hadiah bagi pemenang?",
+    answer: "Ya, setiap program memiliki sistem penghargaan dan hadiah bagi peserta terbaik.",
+  },
+  {
+    icon: CreditCard,
+    question: "Bagaimana jika saya kehilangan kartu QR?",
+    answer: "Anda bisa menghubungi panitia di masjid penyelenggara untuk mencetak ulang kartu QR Anda.",
   },
 ];
 
@@ -50,14 +72,14 @@ const FAQ = () => {
   return (
     <div
       id="faq"
-      className="min-h-screen flex items-center justify-center px-6 py-12 xs:py-20"
+      className="min-h-screen flex items-center justify-center px-6 py-12 xs:py-11"
     >
       <div className="max-w-screen-lg">
         <h2 className="text-3xl xs:text-4xl md:text-5xl !leading-[1.15] font-bold tracking-tight text-center">
           Frequently Asked Questions
         </h2>
         <p className="mt-3 xs:text-lg text-center text-muted-foreground">
-          Quick answers to common questions about our products and services.
+          Punya pertanyaan? Lihat jawaban di bawah ini atau hubungi tim dukungan kami.
         </p>
 
         <div className="mt-12 grid md:grid-cols-2 bg-background rounded-xl overflow-hidden outline outline-[1px] outline-border outline-offset-[-1px]">
