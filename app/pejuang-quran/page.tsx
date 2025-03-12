@@ -33,7 +33,7 @@ export default function HomePejuangQuran() {
             </div>
             {/* Gambar */}
             <img
-              src="https://shadcnblocks.com/images/block/placeholder-1.svg"
+              src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Santri_Nusantara.jpg"
               alt="placeholder hero"
               className="h-full w-full object-cover order-first lg:order-none"
             />

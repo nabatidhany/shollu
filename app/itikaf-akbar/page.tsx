@@ -72,7 +72,7 @@ export default function HomeItikafAkbar() {
             </div>
             {/* Gambar */}
             <img
-              src="https://shadcnblocks.com/images/block/placeholder-1.svg"
+              src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Iranian_youth_at_the_Itikaf_%282016%29.jpg"
               alt="placeholder hero"
               className="h-full w-full object-cover order-first lg:order-none"
             />
@@ -91,7 +91,7 @@ export default function HomeItikafAkbar() {
                   <p className="text-white/80">
                     Itikaf adalah salah satu amalan istimewa di bulan Ramadhan, terutama di 10 malam terakhir. Rasulullah ﷺ bersabda:
                   </p>
-                  <blockquote className='quote mt-2 text-xl italic font-semibold text-white dark:text-white ml-4'>
+                  <blockquote className='quote mt-2 text-lg italic font-semibold text-white dark:text-white ml-4'>
                     Barang siapa yang melakukan itikaf dengan penuh keimanan dan mengharapkan pahala dari Allah, maka diampuni dosa-dosanya yang telah lalu. (HR. Bukhari & Muslim)
                   </blockquote>
                   <p className="text-white/80 mt-4">
