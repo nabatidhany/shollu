@@ -12,14 +12,19 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { useState } from "react";
 import Link from "next/link";
 
-const masjidList = ["Masjid Al-Ikhlas", "Masjid An-Nur", "Masjid Al-Falah", "Masjid At-Taqwa"];
+const masjidList = [
+  { id: 1, name: "Masjid Al-Ikhlas" },
+  { id: 2, name: "Masjid An-Nur" },
+  { id: 3, name: "Masjid Al-Falah" },
+  { id: 4, name: "Masjid At-Taqwa" }
+];
 
 const formSchema = z.object({
   fullName: z.string().min(3, "Nama lengkap harus minimal 3 karakter"),
   whatsapp: z.string().regex(/^\+?\d{10,15}$/, "Nomor WhatsApp tidak valid"),
   birthDate: z.string().refine((val) => !isNaN(Date.parse(val)), "Tanggal lahir tidak valid"),
   gender: z.enum(["male", "female"], { required_error: "Pilih jenis kelamin" }),
-  masjid: z.string().nonempty("Pilih masjid Anda"),
+  masjid: z.number().min(1, "Pilih masjid Anda"),
   hideName: z.enum(["yes", "no"], { required_error: "Pilih opsi" })
 });
 
@@ -27,6 +32,8 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function RegisterPage() {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,18 +41,44 @@ export default function RegisterPage() {
       whatsapp: "",
       birthDate: "",
       gender: undefined,
-      masjid: "",
+      masjid: 0,
       hideName: "no",
     },
   });
 
-  const onSubmit = (values: FormValues) => {
-    console.log(values);
-    setIsSuccess(true);
+  const onSubmit = async (values: FormValues) => {
+    setLoading(true);
+    try {
+      const response:any = await fetch("https://shollu.com/api/register-itikaf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullname: values.fullName,
+          contact: values.whatsapp,
+          gender: values.gender,
+          dob: values.birthDate,
+          masjid_id: values.masjid,
+          isHideName: values.hideName === "yes",
+        })
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setIsSuccess(true);
+        form.reset();
+      } else {
+        setErrorMessage(data?.error || "Terjadi kesalahan saat pendaftaran");
+        console.error("Pendaftaran gagal", response);
+      }
+    } catch (error: any) {
+      alert("Terjadi kesalahan"+error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const resetForm = () => {
     setIsSuccess(false);
+    setErrorMessage(null);
     form.reset();
   };
 
@@ -68,7 +101,7 @@ export default function RegisterPage() {
             <FormItem>
               <FormLabel>No WhatsApp</FormLabel>
               <FormControl>
-                <Input placeholder="Contoh: +6281234567890" {...field} />
+                <Input placeholder="Contoh: 081234567890" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -88,7 +121,7 @@ export default function RegisterPage() {
             <FormItem>
               <FormLabel>Jenis Kelamin</FormLabel>
               <FormControl>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih jenis kelamin" />
                   </SelectTrigger>
@@ -106,13 +139,13 @@ export default function RegisterPage() {
             <FormItem>
               <FormLabel>Pilih Masjid</FormLabel>
               <FormControl>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={(value) => field.onChange(Number(value))} defaultValue={String(field.value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih masjid Anda" />
                   </SelectTrigger>
                   <SelectContent>
                     {masjidList.map((masjid, index) => (
-                      <SelectItem key={index} value={masjid}>{masjid}</SelectItem>
+                      <SelectItem key={index} value={String(masjid.id)}>{masjid.name}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -141,7 +174,8 @@ export default function RegisterPage() {
             </FormItem>
           )} />
 
-          <Button type="submit" className="w-full">Daftar</Button>
+          {/* <Button type="submit" className="w-full">Daftar</Button> */}
+          <Button type="submit" className="w-full" disabled={loading}>{loading ? "Mendaftar..." : "Daftar"}</Button>
         </form>
         <Link href={'/itikaf-akbar'}>
           <Button variant="secondary" className="w-full mt-4">Kembali</Button>
@@ -156,6 +190,18 @@ export default function RegisterPage() {
           <p className="text-center">Silakan ambil kartu Anda pada hari acara atau H-3 acara ke panitia.</p>
           <DialogFooter>
             <Button onClick={resetForm}>OK</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      {/* Modal Dialog Error */}
+      <Dialog open={!!errorMessage} onOpenChange={() => setErrorMessage(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Pendaftaran Gagal</DialogTitle>
+          </DialogHeader>
+          <p className="text-center text-red-600">{errorMessage}</p>
+          <DialogFooter>
+            <Button onClick={() => setErrorMessage(null)}>OK</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
