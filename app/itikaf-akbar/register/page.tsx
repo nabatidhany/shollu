@@ -49,7 +49,7 @@ export default function RegisterPage() {
   const onSubmit = async (values: FormValues) => {
     setLoading(true);
     try {
-      const response:any = await fetch("https://shollu.com/api/register-itikaf", {
+      const response:any = await fetch("https://api.shollu.com/api/register-itikaf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
