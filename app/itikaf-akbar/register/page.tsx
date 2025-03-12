@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const masjidList = [
@@ -34,6 +34,7 @@ export default function RegisterPage() {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [masjidList, setMasjidList] = useState<{ id: number; name: string }[]>([]);
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,6 +46,24 @@ export default function RegisterPage() {
       hideName: "no",
     },
   });
+
+  useEffect(() => {
+    const fetchMasjid = async () => {
+      try {
+        const response = await fetch("https://api.shollu.com/api/register-masjid");
+        const data = await response.json();
+        if (response.ok) {
+          setMasjidList(data.data);
+        } else {
+          console.error("Gagal mengambil daftar masjid:", data);
+        }
+      } catch (error) {
+        console.error("Kesalahan jaringan:", error);
+      }
+    };
+
+    fetchMasjid();
+  }, []);
 
   const onSubmit = async (values: FormValues) => {
     setLoading(true);
@@ -144,8 +163,8 @@ export default function RegisterPage() {
                     <SelectValue placeholder="Pilih masjid Anda" />
                   </SelectTrigger>
                   <SelectContent>
-                    {masjidList.map((masjid, index) => (
-                      <SelectItem key={index} value={String(masjid.id)}>{masjid.name}</SelectItem>
+                    {masjidList.map((masjid) => (
+                      <SelectItem key={masjid.id} value={masjid.id.toString()}>{masjid.name}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
