@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Button } from "./ui/button";
+import Link from "next/link";
+import { link } from "fs";
 
 const heroSlides = [
   {
@@ -15,7 +17,8 @@ const heroSlides = [
       Dengan pencatatan berbasis QR Code, setiap hafalan yang disetorkan akan tercatat dengan rapi.
     `,
     image: "https://images.unsplash.com/photo-1683355879158-8f4d2225067c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    cta: "Lihat Detail Event"
+    cta: "Lihat Detail Event",
+    link: '/pejuang-quran'
   },
   {
     title: "Itikaf Akbar",
@@ -24,7 +27,9 @@ const heroSlides = [
       Absensi peserta dilakukan dengan QR Code, memastikan pencatatan yang akurat dan transparan
     `,
     image: "https://images.unsplash.com/photo-1582391167702-81c7c41fb383?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    cta: ["Lihat Detail Event", "Daftar Sekarang"]
+    cta: ["Lihat Detail Event", "Daftar Sekarang"],
+    link: '/itikaf-akbar',
+    link2: '/itikaf-akbar/register'
   },
   {
     title: "Sholat Champion",
@@ -33,7 +38,8 @@ const heroSlides = [
 Setiap kehadiran di masjid akan dicatat dengan sistem QR Code, dan peserta dengan kehadiran terbanyak akan mendapatkan apresiasi khusus.
     `,
     image: "https://images.unsplash.com/photo-1616261371178-9e9490303aef?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    cta: "Lihat Detail Event"
+    cta: "Akan Hadir Secepatnya",
+    link: '/'
   }
 ];
 
@@ -65,13 +71,17 @@ const Hero = () => {
                     <h1 className="text-3xl font-bold mb-4">{slide.title}</h1>
                     <p className="text-lg mb-8">{slide.description}</p>
                     <div className="flex flex-col lg:max-w-xs max-w-full mx-auto gap-4 justify-center">
-                      <Button variant="default" className="bg-[#0b685c] hover:bg-[#165c53]" size="lg">
-                        {typeof slide.cta === "string" ? slide.cta : slide.cta[0]}
-                      </Button>
-                      {Array.isArray(slide.cta) && (
-                        <Button variant="secondary" size="lg">
-                          {slide.cta[1]}
+                      <Link href={slide.link}>
+                        <Button variant="default" className="bg-[#0b685c] hover:bg-[#165c53]" size="lg">
+                          {typeof slide.cta === "string" ? slide.cta : slide.cta[0]}
                         </Button>
+                      </Link>
+                      {Array.isArray(slide.cta) && (
+                        <Link href={slide.link2 || '/'}>
+                          <Button variant="secondary" size="lg">
+                            {slide.cta[1]}
+                          </Button>
+                        </Link>
                       )}
                     </div>
                   </div>

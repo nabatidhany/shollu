@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { CircleCheck, CircleHelp } from "lucide-react";
 import { useState } from "react";
 import { PejuangQuran } from "./pejuang-quran";
+import { Itikaf } from "./itikaf";
 
 const tooltipContent = {
   styles: "Choose from a variety of styles to suit your preferences.",
@@ -105,16 +106,7 @@ const EventSummaries = () => {
       }
       {
         selectedBillingPeriod === "itikaf-akbar" && (
-          <div className="mt-8">
-            <div>
-              <div className="flex flex-col items-center justify-center py-12 bg-gray-200 rounded-xl">
-                <h3 className="text-xl font-semibold">Akan hadir secepatnya</h3>
-                <p className="mt-4 text-center text-muted-foreground">
-                  Tunggu informasi selanjutnya mengenai Itikaf Akbar.
-                </p>
-              </div>
-            </div>
-          </div>
+          <Itikaf />
         )
       }
       {
@@ -122,7 +114,7 @@ const EventSummaries = () => {
           <div className="mt-8">
             <h2 className="text-2xl font-bold">Sholat Champion</h2>
             <p className="mt-4 text-lg text-center text-muted-foreground">
-              Sholat Champion adalah program kompetisi sholat berjamaah di masjid.
+              Akan Hadir Secepatnya
             </p>
           </div>
         )

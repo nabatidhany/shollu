@@ -1,9 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+"use client";
 import { useState } from "react";
-import { Search, MapPin } from "lucide-react";
+import { Search, MapPin, ArrowRight, TowerControl } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 const masjidList = [
   { name: "Masjid Al-Ikhlas", location: "Jakarta", events: ["Pejuang Quran", "Sholat Champion"] },
@@ -15,40 +16,52 @@ const masjidList = [
 export default function MasjidList() {
   const [search, setSearch] = useState("");
 
-  const filteredMasjid = masjidList.filter(masjid =>
-    masjid.name.toLowerCase().includes(search.toLowerCase()) ||
-    masjid.location.toLowerCase().includes(search.toLowerCase())
+  const filteredMasjid = masjidList.filter(
+    (masjid) =>
+      masjid.name.toLowerCase().includes(search.toLowerCase()) ||
+      masjid.location.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div className="w-full mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Daftar Masjid Terhubung</h1>
-      <div className="relative mb-4">
-        <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
-        <Input
-          type="text"
-          placeholder="Cari masjid..."
-          className="pl-10 w-full border-2"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+    <section className="py-0">
+      <div className="container px-0 md:px-8">
+        <h1 className="mb-6 text-3xl font-semibold">Daftar Masjid Terhubung</h1>
+        <div className="relative mb-6">
+          <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
+          <Input
+            type="text"
+            placeholder="Cari masjid..."
+            className="pl-10 w-full border-2"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col">
+          <Separator />
+          {filteredMasjid.map((masjid, index) => (
+            <div key={index}>
+              <div className="grid items-center gap-4 px-4 py-5 md:grid-cols-2">
+                <div className="order-2 flex items-center gap-2 md:order-none">
+                  <span className="flex h-14 w-16 shrink-0 items-center justify-center rounded-md bg-muted">
+                    <TowerControl size={24} />
+                  </span>
+                  <div className="flex flex-col gap-1">
+                    <h3 className="font-semibold">{masjid.name}</h3>
+                    <p className="text-sm text-muted-foreground">{masjid.location}</p>
+                  </div>
+                </div>
+                <Button variant="outline" asChild>
+                  <Link href="/detail-masjid/1" className="order-3 ml-auto w-fit gap-2 md:order-none">
+                    <span>Lihat Rekapan</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+              <Separator />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {filteredMasjid.map((masjid, index) => (
-          <Card key={index} className="shadow-md hover:shadow-lg transition">
-            <CardHeader>
-              <CardTitle className="text-xl">{masjid.name}</CardTitle>
-            </CardHeader>
-            <CardContent className="flex gap-1 items-center">
-              <MapPin className="top-2.5 text-gray-400" size={20} />
-              <p className="text-gray-600">{masjid.location}</p>
-            </CardContent>
-            <CardContent>
-              <Button>Lihat Rekapan</Button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }

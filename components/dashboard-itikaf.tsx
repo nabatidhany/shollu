@@ -1,12 +1,14 @@
-"use client"
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-import { Users, BookOpen, Trophy, Percent } from "lucide-react";
+import { Users, BookOpen, Trophy, Percent, TowerControl } from "lucide-react";
 
 const stats = [
-  { icon: <Users className="text-green-600" />, title: "Total Peserta Hadir", value: "75 dari 100" },
-  { icon: <Percent className="text-green-600" />, title: "Tingkat Kehadiran", value: "85%" },
+  { icon: <Users className="text-green-600" />, title: "Total Pendaftar", value: "75 Orang" },
+  { icon: <TowerControl className="text-green-600" />, title: "Total Masjid Penyelenggara", value: "20 Masjid" },
+  // { icon: <Users className="text-green-600" />, title: "Total Peserta Hadir", value: "75 dari 100" },
+  // { icon: <Percent className="text-green-600" />, title: "Tingkat Kehadiran", value: "85%" },
 ];
 
 const barData = [
@@ -27,7 +29,7 @@ const tableData = [
   { id: 3, name: "Budi", hadir: "❌", hafalan: "-", surah: "-" },
 ];
 
-export default function DashboardSummary() {
+export default function DashboardSummaryItikaf() {
   return (
     <div className="p-4 space-y-6">
       <h2 className="mb-3 text-xl text-center font-semibold md:mb-4 md:text-4xl lg:mb-6">Statistik Event Hari Ini dari Seluruh Masjid </h2>

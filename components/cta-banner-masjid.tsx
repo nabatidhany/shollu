@@ -28,21 +28,18 @@ export default function CTABanner() {
         />
         <div className="relative z-0 flex flex-col gap-3">
           <h3 className="text-3xl md:text-4xl font-semibold">
-            Bersiap Menjadi Pejuang Ibadah?
+            Masjid Anda ingin Menjadi Bagian dari Kami?
           </h3>
           <p className="mt-2 text-base md:text-lg">
-            Jadikan Ramadhan tahun ini lebih bermakna! Daftar sekarang untuk mengikuti Pejuang Quran, Pejuang Itikaf, dan Sholat Champion.
+            Jadikan Masjid anda bagian dari kami dan dapatkan kemudahan dalam mengelola aktivitas umat secara gratis.
           </p>
         </div>
         <div className="relative z-0 mt-14 flex flex-col sm:flex-row gap-4">
-          <Link href="/itikaf-akbar/register">
+          <Link href="https://wa.me/6285215003995?text=Assalamualaikum%20Admin%20Masjid%20Kami%20Ingin%20Bergabung%20dengan%20Kalian">
             <Button size="lg">
-              Daftar Sekarang <ArrowUpRight className="!h-5 !w-5" />
+              Tanya Admin <ArrowUpRight className="!h-5 !w-5" />
             </Button>
           </Link>
-          {/* <Button size="lg" variant="outline">
-            Lihat Rekapan Absensi <Forward className="!h-5 !w-5" />
-          </Button> */}
         </div>
       </div>
     </div>
