@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -23,28 +23,44 @@ const masjidDetail:any = {
 };
 
 export default function MasjidDetail() {
-  const [selectedEvent, setSelectedEvent] = useState(masjidDetail.events[0]);
+  const [selectedEvent, setSelectedEvent] = useState('Pejuang Quran');
   const [view, setView] = useState("daily");
+  const [masjidProfile, setMasjidProfile] = useState<any>(null);
+  const [events, setEvents] = useState<any>(['Pejuang Quran', 'Smart Itikaf', 'Sholat Champion']);
 
   const absensi = masjidDetail.absensi[selectedEvent] || [];
   const currentDate = new Date();
   const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
+  useEffect(() => {
+    fetch("https://api.shollu.com/api/get-masjid/1")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        setMasjidProfile(data.data);
+      })
+      .catch((err) => console.error("Error fetching masjid data:", err));
+  }, []);
+
+  if (!masjidProfile) {
+    return <div className="text-center mt-10">Loading...</div>;
+  }
+
   return (
     <div className="w-full mx-auto">
       {/* Hero Section */}
-      <div className="relative flex-col w-full h-64 pt-20 bg-[#0b685c] flex items-center justify-center" style={{ background: `url(${masjidDetail.image}) no-repeat top`, backgroundSize: "cover"}}>
-        <h1 className="text-white text-4xl font-bold">
-          {masjidDetail.name}
+      <div className="relative flex-col w-full h-64 pt-20 bg-[#0b685c] flex items-center justify-center text-center" style={{ background: `url(${masjidDetail.image}) no-repeat top`, backgroundSize: "cover"}}>
+        <h1 className="text-white text-2xl font-bold">
+          {masjidProfile.name}
         </h1>
-        <p className="text-white/80">Jl. Jogjakarta</p>
+        <p className="text-white/80">{masjidProfile.alamat}</p>
       </div>
 
       <div className="p-6 max-w-6xl mx-auto">
         {/* Pilihan Event */}
         <p className="mb-2">Pilihan Event:</p>
         <div className="flex gap-2 mb-4">
-          {masjidDetail.events.map((event:any, index:any) => (
+          {events.map((event:any, index:any) => (
             <Button key={index} variant={selectedEvent === event ? "default" : "outline"} onClick={() => setSelectedEvent(event)}>
               {event}
             </Button>

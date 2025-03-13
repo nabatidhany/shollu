@@ -21,7 +21,7 @@ const Itikaf = () => {
         <div>
           <DashboardSummaryItikaf />
           <div className="flex justify-center items-center">
-            <Link href="/itikaf-akbar">
+            <Link href="/smart-itikaf">
               <Button>
                 Lihat Lebih Detail
               </Button>

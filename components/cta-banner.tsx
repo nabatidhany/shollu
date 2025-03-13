@@ -35,7 +35,7 @@ export default function CTABanner() {
           </p>
         </div>
         <div className="relative z-0 mt-14 flex flex-col sm:flex-row gap-4">
-          <Link href="/itikaf-akbar/register">
+          <Link href="/smart-itikaf/register">
             <Button size="lg">
               Daftar Sekarang <ArrowUpRight className="!h-5 !w-5" />
             </Button>

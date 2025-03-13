@@ -21,15 +21,15 @@ const heroSlides = [
     link: '/pejuang-quran'
   },
   {
-    title: "Itikaf Akbar",
+    title: "Smart Itikaf",
     description: `
       Pejuang Itikaf adalah program yang mengajak kaum Muslimin untuk beritikaf di masjid-masjid rekanan kami.
       Absensi peserta dilakukan dengan QR Code, memastikan pencatatan yang akurat dan transparan
     `,
     image: "https://images.unsplash.com/photo-1582391167702-81c7c41fb383?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     cta: ["Lihat Detail Event", "Daftar Sekarang"],
-    link: '/itikaf-akbar',
-    link2: '/itikaf-akbar/register'
+    link: '/smart-itikaf',
+    link2: '/smart-itikaf/register'
   },
   {
     title: "Sholat Champion",

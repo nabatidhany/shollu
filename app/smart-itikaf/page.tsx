@@ -9,13 +9,13 @@ import { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Itikaf Akbar 2025 - Mendekatkan Diri kepada Allah",
-    description: "Ikuti Itikaf Akbar 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
-    keywords: "itikaf, itikaf akbar, ramadhan, ibadah, masjid, qiyamul lail, sahur bersama, sholat malam",
-    authors: [{ name: "Itikaf Akbar 2025" }],
+    title: "Smart Itikaf 2025 - Mendekatkan Diri kepada Allah",
+    description: "Ikuti Smart Itikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
+    keywords: "itikaf, Smart Itikaf, ramadhan, ibadah, masjid, qiyamul lail, sahur bersama, sholat malam",
+    authors: [{ name: "Smart Itikaf 2025" }],
     openGraph: {
-      title: "Itikaf Akbar 2025 - Mendekatkan Diri kepada Allah",
-      description: "Ikuti Itikaf Akbar 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
+      title: "Smart Itikaf 2025 - Mendekatkan Diri kepada Allah",
+      description: "Ikuti Smart Itikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
       images: [{
         url: "/favicon.png",
         width: 1200,
@@ -23,12 +23,12 @@ export async function generateMetadata(): Promise<Metadata> {
         alt: "Shollu",
       }],
       type: "website",
-      url: "https://shollu.com/itikaf-akbar",
+      url: "https://shollu.com/smart-itikaf",
     },
     twitter: {
       card: "summary_large_image",
-      title: "Itikaf Akbar 2025 - Mendekatkan Diri kepada Allah",
-      description: "Ikuti Itikaf Akbar 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
+      title: "Smart Itikaf 2025 - Mendekatkan Diri kepada Allah",
+      description: "Ikuti Smart Itikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
       images: [
         {
           url: "/favicon.png",
@@ -52,14 +52,14 @@ export default function HomeItikafAkbar() {
             <div className="flex flex-col items-center p-16 text-center lg:items-start lg:text-left">
               <p>Event Ramadhan 2025</p>
               <h1 className="my-6 text-4xl font-bold text-pretty lg:text-6xl">
-                Itikaf Akbar
+                Smart Itikaf
               </h1>
               <p className="mb-8 max-w-xl text-muted-foreground lg:text-xl">
-                <strong><i>"Meningkatkan Kedekatan dengan Allah melalui Itikaf"</i></strong> Itikaf Akbar adalah program yang mengajak kaum Muslimin untuk beritikaf di masjid-masjid rekanan kami.
+                <strong><i>"Meningkatkan Kedekatan dengan Allah melalui Itikaf"</i></strong> Smart Itikaf adalah program yang mengajak kaum Muslimin untuk beritikaf di masjid-masjid rekanan kami.
                 Absensi peserta dilakukan dengan QR Code, memastikan pencatatan yang akurat dan transparan.
               </p>
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
-                <Link href={`/itikaf-akbar/register`}>
+                <Link href={`/smart-itikaf/register`}>
                   <Button>
                     Daftar Sekarang
                     <ArrowRight className="size-4" />
@@ -102,7 +102,7 @@ export default function HomeItikafAkbar() {
                     Barang siapa yang melakukan itikaf dengan penuh keimanan dan mengharapkan pahala dari Allah, maka diampuni dosa-dosanya yang telah lalu. (HR. Bukhari & Muslim)
                   </blockquote>
                   <p className="text-white/80 mt-4">
-                    Itikaf Akbar bukan sekadar berdiam diri di masjid, tetapi juga momen untuk memperbanyak ibadah, muhasabah diri, dan mendekatkan hati kepada Allah. Bergabung dalam Itikaf Akbar berarti bergabung dalam perjalanan spiritual yang penuh keberkahan.
+                    Smart Itikaf bukan sekadar berdiam diri di masjid, tetapi juga momen untuk memperbanyak ibadah, muhasabah diri, dan mendekatkan hati kepada Allah. Bergabung dalam Smart Itikaf berarti bergabung dalam perjalanan spiritual yang penuh keberkahan.
                   </p>
                 </div>
                 <h2 className="mb-2.5 text-3xl font-semibold md:text-5xl">

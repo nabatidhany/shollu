@@ -32,7 +32,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/itikaf-akbar">I'Tikaf Akbar</Link>
+          <Link href="/smart-itikaf">Smart Itikaf</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>

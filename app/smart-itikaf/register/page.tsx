@@ -103,7 +103,7 @@ export default function RegisterPage() {
 
   return (
     <div className="max-w-lg mx-auto p-6 mt-20">
-      <h1 className="text-3xl font-bold mb-6">Registrasi Itikaf Akbar</h1>
+      <h1 className="text-3xl font-bold mb-6">Registrasi Smart Itikaf</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField control={form.control} name="fullName" render={({ field }) => (
@@ -196,7 +196,7 @@ export default function RegisterPage() {
           {/* <Button type="submit" className="w-full">Daftar</Button> */}
           <Button type="submit" className="w-full" disabled={loading}>{loading ? "Mendaftar..." : "Daftar"}</Button>
         </form>
-        <Link href={'/itikaf-akbar'}>
+        <Link href={'/smart-itikaf'}>
           <Button variant="secondary" className="w-full mt-4">Kembali</Button>
         </Link>
       </Form>
