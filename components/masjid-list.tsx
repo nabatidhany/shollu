@@ -71,7 +71,7 @@ export default function MasjidList(props: { event_id: number }) {
                   </div>
                 </div>
                 <Button variant="outline" asChild>
-                  <Link href="/detail-masjid/1" className="order-3 ml-auto w-fit gap-2 md:order-none">
+                  <Link href={`/detail-masjid/${masjid.id}`} className="order-3 ml-auto w-fit gap-2 md:order-none">
                     <span>Lihat Rekapan</span>
                     <ArrowRight className="h-4 w-4" />
                   </Link>
