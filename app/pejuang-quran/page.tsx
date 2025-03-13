@@ -41,6 +41,13 @@ export default function HomePejuangQuran() {
         </div>
       </section>
       <section>
+        <div id='rekapan' className='container mx-auto max-w-6xl px-8 lg:px-0'>
+          <MasjidList event_id={1} />
+          <hr className='my-8 border-t border-muted-2' />
+          <DashboardSummaryPejuangQuran />
+        </div>
+      </section>
+      <section>
         <div className="container mx-auto max-w-6xl px-8 lg:px-0">
           <section className="py-10">
             <div className="container flex flex-col gap-28">
@@ -122,13 +129,6 @@ export default function HomePejuangQuran() {
               </div>
             </div>
           </section>
-        </div>
-      </section>
-      <section>
-        <div id='rekapan' className='container mx-auto max-w-6xl px-8 lg:px-0'>
-          <DashboardSummaryPejuangQuran />
-          <hr className='my-8 border-t border-muted-2' />
-          <MasjidList />
         </div>
       </section>
       <section>

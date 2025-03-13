@@ -50,7 +50,7 @@ export default function RegisterPage() {
   useEffect(() => {
     const fetchMasjid = async () => {
       try {
-        const response = await fetch("https://api.shollu.com/api/register-masjid");
+        const response = await fetch("https://api.shollu.com/api/register-masjid/2");
         const data = await response.json();
         if (response.ok) {
           setMasjidList(data.data);

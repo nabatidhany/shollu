@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, MapPin, ArrowRight, TowerControl } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,13 +13,33 @@ const masjidList = [
   { name: "Masjid At-Taqwa", location: "Yogyakarta", events: ["Pejuang Quran", "Pejuang Itikaf"] },
 ];
 
-export default function MasjidList() {
+export default function MasjidList(props: { event_id: number }) {
+  const { event_id } = props;
   const [search, setSearch] = useState("");
+  const [masjidList, setMasjidList] = useState<{ id: number; name: string; alamat: string }[]>([]);
+
+  useEffect(() => {
+      const fetchMasjid = async () => {
+        try {
+          const response = await fetch(`https://api.shollu.com/api/register-masjid/${event_id}`);
+          const data = await response.json();
+          if (response.ok) {
+            setMasjidList(data.data);
+          } else {
+            console.error("Gagal mengambil daftar masjid:", data);
+          }
+        } catch (error) {
+          console.error("Kesalahan jaringan:", error);
+        }
+      };
+  
+      fetchMasjid();
+    }, []);
 
   const filteredMasjid = masjidList.filter(
     (masjid) =>
       masjid.name.toLowerCase().includes(search.toLowerCase()) ||
-      masjid.location.toLowerCase().includes(search.toLowerCase())
+      masjid.alamat.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -47,7 +67,7 @@ export default function MasjidList() {
                   </span>
                   <div className="flex flex-col gap-1">
                     <h3 className="font-semibold">{masjid.name}</h3>
-                    <p className="text-sm text-muted-foreground">{masjid.location}</p>
+                    <p className="text-sm text-muted-foreground">{masjid.alamat}</p>
                   </div>
                 </div>
                 <Button variant="outline" asChild>
