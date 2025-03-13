@@ -22,7 +22,7 @@ const masjidDetail:any = {
   },
 };
 
-export default function MasjidDetail() {
+export default function MasjidDetail({ params }: { params: { id: string } }) {
   const [selectedEvent, setSelectedEvent] = useState('Pejuang Quran');
   const [view, setView] = useState("daily");
   const [masjidProfile, setMasjidProfile] = useState<any>(null);
@@ -33,7 +33,7 @@ export default function MasjidDetail() {
   const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
   useEffect(() => {
-    fetch("https://api.shollu.com/api/get-masjid/1")
+    fetch(`https://api.shollu.com/api/get-masjid/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
