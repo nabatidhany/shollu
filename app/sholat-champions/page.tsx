@@ -79,8 +79,8 @@ export default function HomeSholatChampions() {
       <section>
         <div id='rekapan' className='container mx-auto max-w-6xl px-8 lg:px-0'>
           <MasjidList event_id={3} />
-          <hr className='my-8 border-t border-muted-2' />
-          <DashboardSummarySholatChampions />
+          {/* <hr className='my-8 border-t border-muted-2' /> */}
+          {/* <DashboardSummarySholatChampions /> */}
         </div>
       </section>
       <section>
