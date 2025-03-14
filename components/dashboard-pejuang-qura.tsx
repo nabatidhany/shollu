@@ -12,6 +12,7 @@ import {
   BarChart,
   XAxis,
   Bar,
+  YAxis,
 } from "recharts";
 import {
   ChartConfig,
@@ -136,35 +137,38 @@ export default function DashboardSummary() {
           <CardTitle>Statistik Kehadiran per Masjid</CardTitle>
         </CardHeader>
         <CardContent>
-          <ChartContainer config={chartConfig}>
-            <BarChart accessibilityLayer data={masjidBarData}>
-              <XAxis
-                dataKey="masjid"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={barData}>
+              {/* Pastikan XAxis menampilkan nama masjid */}
+              <XAxis 
+                dataKey="masjid" 
+                tick={{ fontSize: 10 }} 
+                angle={-45} 
+                textAnchor="end" 
+                interval={0} 
               />
-              <Bar
-                dataKey="male"
-                stackId="a"
-                fill="var(--color-male)"
-                radius={[0, 0, 4, 4]}
+              <YAxis />
+              <Tooltip
+                cursor={{ fill: "rgba(0, 0, 0, 0.1)" }}
+                content={({ active, payload }) => {
+                  if (active && payload && payload.length) {
+                    const data = payload[0].payload
+                    return (
+                      <div className="bg-white p-2 rounded shadow-md text-xs border">
+                        <strong>{data.masjid}</strong>
+                        <div className="text-green-600">Laki-laki: {data.male}</div>
+                        <div className="text-pink-600">Perempuan: {data.female}</div>
+                      </div>
+                    )
+                  }
+                  return null
+                }}
               />
-              <Bar
-                dataKey="female"
-                stackId="a"
-                fill="var(--color-female)"
-                radius={[4, 4, 0, 0]}
-              />
-              <ChartTooltip
-                content={
-                  <ChartTooltipContent labelKey="masjid" indicator="line" />
-                }
-                cursor={false}
-                defaultIndex={1}
-              />
+
+              <Bar dataKey="male" stackId="a" fill="#34D399" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="female" stackId="a" fill="#EC4899" radius={[0, 0, 4, 4]} />
             </BarChart>
-          </ChartContainer>
+          </ResponsiveContainer>
         </CardContent>
       </Card>
     </div>
