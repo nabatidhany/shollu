@@ -65,7 +65,7 @@ const Footer = () => {
           </span>
 
           <div className="flex items-center gap-5 text-white">
-            <Link href="#" target="_blank">
+            <Link href="https://www.instagram.com/sholatchampions" target="_blank">
               <Instagram className="h-5 w-5" />
             </Link>
           </div>
