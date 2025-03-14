@@ -35,6 +35,11 @@ export const NavMenu = (props: NavigationMenuProps) => (
           <Link href="/smart-itikaf">Smart Itikaf</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
+      <NavigationMenuItem>
+        <NavigationMenuLink asChild>
+          <Link href="/sholat-champions">Sholat Champions</Link>
+        </NavigationMenuLink>
+      </NavigationMenuItem>
     </NavigationMenuList>
   </NavigationMenu>
 );

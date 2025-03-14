@@ -94,7 +94,7 @@ const EventSummaries = () => {
               Smart Itikaf
             </TabsTrigger>
             <TabsTrigger value="sholat-champion" className="py-1.5 rounded-full">
-              Sholat Champion
+              Sholat Champions
             </TabsTrigger>
           </TabsList>
         </Tabs>

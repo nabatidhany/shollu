@@ -13,8 +13,7 @@ const heroSlides = [
   {
     title: "Pejuang Quran",
     description: `
-      Pejuang Quran adalah program khusus untuk anak-anak yang ingin memperbanyak hafalan Al-Qur'an di masjid.
-      Dengan pencatatan berbasis QR Code, setiap hafalan yang disetorkan akan tercatat dengan rapi.
+      Pejuang Qur'an adalah program tilawah Al-Quran yang di rancang khusus untuk anak-anak dan remaja dengan target minimal satu kali khatam. Dengan pencatatan berbasis QR code
     `,
     image: "https://images.unsplash.com/photo-1683355879158-8f4d2225067c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     cta: "Lihat Detail Event",
@@ -23,8 +22,7 @@ const heroSlides = [
   {
     title: "Smart Itikaf",
     description: `
-      Pejuang Itikaf adalah program yang mengajak kaum Muslimin untuk beritikaf di masjid-masjid rekanan kami.
-      Absensi peserta dilakukan dengan QR Code, memastikan pencatatan yang akurat dan transparan
+      Smart I'tikaf adalah sebuah Agregator/Platform yang membantu Pemerintahan dan Panitia I'tikaf dalam mentransformasikan absensi manual ke absensi digital dengan sistem QR Code, sehingga dapat memantau jumlah peserta I'tikaf di Kota tertentu
     `,
     image: "https://images.unsplash.com/photo-1582391167702-81c7c41fb383?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     cta: ["Lihat Detail Event", "Daftar Sekarang"],
@@ -32,14 +30,13 @@ const heroSlides = [
     link2: '/smart-itikaf/register'
   },
   {
-    title: "Sholat Champion",
+    title: "Sholat Champions",
     description: `
-      Sholat Champion adalah program kompetisi bagi anak-anak untuk membiasakan sholat berjamaah di masjid.
-Setiap kehadiran di masjid akan dicatat dengan sistem QR Code, dan peserta dengan kehadiran terbanyak akan mendapatkan apresiasi khusus.
+      Sholat Champions adalah Program Kompetisi dan Monitoring Sholat bagi anak-anak dan remaja untuk membiasakan Sholat berjamaah di Masjid. Dengan menggunakan sistem QR Code atau Finger print. Peserta terbaik akan mendapatkan hadiah
     `,
     image: "https://images.unsplash.com/photo-1616261371178-9e9490303aef?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    cta: "Akan Hadir Secepatnya",
-    link: '/'
+    cta: "Lihat Detail Event",
+    link: '/sholat-champions'
   }
 ];
 
