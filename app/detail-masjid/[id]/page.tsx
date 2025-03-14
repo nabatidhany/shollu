@@ -1,106 +1,186 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useParams } from "next/navigation";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { format, parseISO } from "date-fns";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
-const masjidDetail:any = {
-  name: "Masjid Al-Ikhlas",
-  image: "https://images.unsplash.com/photo-1572880420415-4ec18a1f0db5?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  events: ["Pejuang Quran", "Sholat Champion"],
-  absensi: {
-    "Pejuang Quran": [
-      { name: "Ali", date: "2025-03-10", time: "05:30", status: true },
-      { name: "Budi", date: "2025-03-10", time: "-", status: false },
-    ],
-    "Sholat Champion": [
-      { name: "Citra", date: "2025-03-10", time: "06:00", status: true },
-      { name: "Dewi", date: "2025-03-10", time: "-", status: false },
-    ],
-  },
+const eventsGlobal = [
+  { id: 1, name: "Pejuang Quran" },
+  { id: 2, name: "Smart Itikaf" },
+  { id: 3, name: "Sholat Champion" },
+];
+
+// Waktu sholat di Padang
+const sholatTimes:any = {
+  subuh: { jam: "04:50:00", min: "04:20:00", max: "05:20:00" },
+  dzuhur: { jam: "12:15:00", min: "11:45:00", max: "12:45:00" },
+  ashar: { jam: "15:30:00", min: "15:00:00", max: "16:00:00" },
+  maghrib: { jam: "18:20:00", min: "17:50:00", max: "18:50:00" },
+  isya: { jam: "19:30:00", min: "19:00:00", max: "20:00:00" },
 };
 
-export default function MasjidDetail({ params }: { params: { id: string } }) {
-  const [selectedEvent, setSelectedEvent] = useState('Pejuang Quran');
-  const [view, setView] = useState("daily");
-  const [masjidProfile, setMasjidProfile] = useState<any>(null);
-  const [events, setEvents] = useState<any>(['Pejuang Quran', 'Smart Itikaf', 'Sholat Champion']);
+export default function MasjidDetail() {
+  const params = useParams();
+  const masjidId = params.id;
 
-  const absensi = masjidDetail.absensi[selectedEvent] || [];
-  const currentDate = new Date();
-  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+  const [selectedEvent, setSelectedEvent] = useState<number>(1);
+  const [selectedSholat, setSelectedSholat] = useState<string>("subuh");
+  const [masjidProfile, setMasjidProfile] = useState<any>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const [rekapanAbsen, setRekapanAbsen] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  
 
   useEffect(() => {
-    fetch(`https://api.shollu.com/api/get-masjid/${params.id}`)
+    fetch(`https://api.shollu.com/api/get-masjid/${masjidId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         setMasjidProfile(data.data);
       })
       .catch((err) => console.error("Error fetching masjid data:", err));
   }, []);
 
+  useEffect(() => {
+    if (selectedEvent && selectedDate) {
+      const formattedDate = format(selectedDate, "yyyy-MM-dd");
+      setLoading(true);
+
+      let url = `https://api.shollu.com/api/rekap-absen/${masjidId}?id_event=${selectedEvent}&tanggal=${formattedDate}`;
+
+      if (selectedEvent === 3) {
+        const sholat = sholatTimes[selectedSholat];
+        url += `&jam_min=${sholat.min}&jam_max=${sholat.max}`;
+      }
+
+      fetch(url)
+        .then(async (res) => {
+          if (res.status === 404) {
+            setRekapanAbsen([]);
+            return;
+          }
+          const data = await res.json();
+          setRekapanAbsen(data.data || []);
+        })
+        .catch((err) => console.error("Error fetching absensi data:", err))
+        .finally(() => setLoading(false));
+    }
+  }, [selectedEvent, selectedDate, selectedSholat]);
+
   if (!masjidProfile) {
-    return <div className="text-center mt-10">Loading...</div>;
+    return <div className="text-center mt-32">Loading...</div>;
   }
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto px-0">
       {/* Hero Section */}
-      <div className="relative flex-col w-full h-64 pt-20 bg-[#0b685c] flex items-center justify-center text-center" style={{ background: `url(${masjidDetail.image}) no-repeat top`, backgroundSize: "cover"}}>
-        <h1 className="text-white text-2xl font-bold">
-          {masjidProfile.name}
-        </h1>
-        <p className="text-white/80">{masjidProfile.alamat}</p>
+      <div
+        className="relative flex flex-col w-full h-64 pt-20 items-center justify-center text-center bg-cover bg-center"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1572880420415-4ec18a1f0db5?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fA%3D%3D')`,
+        }}
+      >
+        {/* Overlay Hitam */}
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+
+        {/* Konten */}
+        <div className="relative z-10 text-white">
+          <h1 className="text-2xl font-bold">{masjidProfile.name}</h1>
+          <p className="text-white/80">{masjidProfile.alamat}</p>
+        </div>
       </div>
 
-      <div className="p-6 max-w-6xl mx-auto">
+      <div className="p-4 max-w-6xl mx-auto">
         {/* Pilihan Event */}
-        <p className="mb-2">Pilihan Event:</p>
-        <div className="flex gap-2 mb-4">
-          {events.map((event:any, index:any) => (
-            <Button key={index} variant={selectedEvent === event ? "default" : "outline"} onClick={() => setSelectedEvent(event)}>
-              {event}
+        <p className="mb-2 text-sm font-semibold">Pilih Event:</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
+          {eventsGlobal.map((event) => (
+            <Button
+              key={event.id}
+              className="w-full"
+              variant={selectedEvent === event.id ? "default" : "outline"}
+              onClick={() => setSelectedEvent(event.id)}
+            >
+              {event.name}
             </Button>
           ))}
         </div>
 
-        {/* Pilihan Tampilan */}
-        <p className="mb-2">Pilihan Waktu:</p>
-        <div className="flex gap-2 mb-4">
-          <Button variant={view === "daily" ? "default" : "outline"} onClick={() => setView("daily")}>
-            Hari Ini
-          </Button>
-          <Button variant={view === "weekly" ? "default" : "outline"} onClick={() => setView("weekly")}>
-            Mingguan
-          </Button>
-          <Button variant={view === "monthly" ? "default" : "outline"} onClick={() => setView("monthly")}>
-            Bulanan
-          </Button>
+        {/* Pilihan Tanggal */}
+        <div className="mb-4">
+          <p className="mb-2 text-sm font-semibold">Pilih Tanggal:</p>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline" className="w-full">
+                {selectedDate ? format(selectedDate, "yyyy-MM-dd") : "Pilih Tanggal"}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent align="start">
+              <Calendar
+                mode="single"
+                selected={selectedDate}
+                onSelect={(date) => {
+                  if (date) setSelectedDate(date);
+                }}
+              />
+            </PopoverContent>
+          </Popover>
         </div>
+
+        {/* Dropdown untuk Sholat hanya jika event ID = 3 */}
+        {selectedEvent === 3 && (
+          <div className="mb-4">
+            <p className="mb-2 text-sm font-semibold">Pilih Sholat:</p>
+            <Select value={selectedSholat} onValueChange={setSelectedSholat}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Pilih Sholat" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="subuh">Subuh</SelectItem>
+                <SelectItem value="dzuhur">Dzuhur</SelectItem>
+                <SelectItem value="ashar">Ashar</SelectItem>
+                <SelectItem value="maghrib">Maghrib</SelectItem>
+                <SelectItem value="isya">Isya</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        )}
 
         {/* Tabel Rekapan */}
         <div className="overflow-x-auto">
-          <Table className="border border-gray-300">
+          <Table className="w-full border border-gray-300">
             <TableHeader>
-              <TableRow className="border border-gray-300">
-                <TableHead className="border border-gray-300 sticky left-0 bg-white z-10">Nama</TableHead>
-                {view === "daily" && <><TableHead className="border border-gray-300">Status</TableHead><TableHead className="border border-gray-300">Jam Absen</TableHead></>}
-                {view === "weekly" && Array.from({ length: 7 }, (_, i) => <TableHead key={i} className="border border-gray-300">{i + 1}</TableHead>)}
-                {view === "monthly" && Array.from({ length: daysInMonth }, (_, i) => <TableHead key={i} className="border border-gray-300">{i + 1}</TableHead>)}
+              <TableRow>
+                <TableHead className="bg-gray-200 text-center">#</TableHead>
+                <TableHead className="bg-gray-200">Nama</TableHead>
+                <TableHead className="bg-gray-200">Jam Absen</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {absensi.map((record:any, index:any) => (
-                <TableRow key={index} className="border border-gray-300">
-                  <TableCell className="border border-gray-300 sticky left-0 bg-white z-10">{record.name}</TableCell>
-                  {view === "daily" && <><TableCell className="border border-gray-300">{record.status ? "✔" : "❌"}</TableCell><TableCell className="border border-gray-300">{record.time}</TableCell></>}
-                  {view === "weekly" && Array.from({ length: 7 }, (_, i) => <TableCell key={i} className="border border-gray-300">{record.date.endsWith(`-${String(i + 1).padStart(2, '0')}`) ? (record.status ? "✔" : "❌") : "-"}</TableCell>)}
-                  {view === "monthly" && Array.from({ length: daysInMonth }, (_, i) => <TableCell key={i} className="border border-gray-300">{record.date.endsWith(`-${String(i + 1).padStart(2, '0')}`) ? (record.status ? "✔" : "❌") : "-"}</TableCell>)}
+              {loading ? (
+                <TableRow>
+                  <TableCell colSpan={3} className="text-center py-4">
+                    Memuat data...
+                  </TableCell>
                 </TableRow>
-              ))}
+              ) : rekapanAbsen.length > 0 ? (
+                rekapanAbsen.map((record, index) => (
+                  <TableRow key={index} className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}>
+                    <TableCell className="py-2 px-4 text-center">{index + 1}</TableCell>
+                    <TableCell className="py-2 px-4">{record.fullname}</TableCell>
+                    <TableCell className="py-2 px-4">{format(parseISO(record.jam), "HH:mm:ss")}</TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={3} className="text-center py-4">
+                    Belum ada data absen
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </div>
