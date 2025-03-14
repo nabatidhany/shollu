@@ -11,7 +11,7 @@ import { link } from "fs";
 
 const heroSlides = [
   {
-    title: "Pejuang Quran",
+    title: "Pejuang Qur'an",
     description: `
       Pejuang Qur'an adalah program tilawah Al-Quran yang di rancang khusus untuk anak-anak dan remaja dengan target minimal satu kali khatam. Dengan pencatatan berbasis QR code
     `,
@@ -20,7 +20,7 @@ const heroSlides = [
     link: '/pejuang-quran'
   },
   {
-    title: "Smart Itikaf",
+    title: "Smart I'tikaf",
     description: `
       Smart I'tikaf adalah sebuah Agregator/Platform yang membantu Pemerintahan dan Panitia I'tikaf dalam mentransformasikan absensi manual ke absensi digital dengan sistem QR Code, sehingga dapat memantau jumlah peserta I'tikaf di Kota tertentu
     `,

@@ -9,9 +9,9 @@ import { format, parseISO } from "date-fns";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 const eventsGlobal = [
-  { id: 1, name: "Pejuang Quran" },
-  { id: 2, name: "Smart Itikaf" },
-  { id: 3, name: "Sholat Champion" },
+  { id: 1, name: "Pejuang Qur'an" },
+  { id: 2, name: "Smart I'tikaf" },
+  { id: 3, name: "Sholat Champions" },
 ];
 
 // Waktu sholat di Padang
@@ -154,9 +154,9 @@ export default function MasjidDetail() {
           <Table className="w-full border border-gray-300">
             <TableHeader>
               <TableRow>
-                <TableHead className="bg-gray-200 text-center">#</TableHead>
-                <TableHead className="bg-gray-200">Nama</TableHead>
-                <TableHead className="bg-gray-200">Jam Absen</TableHead>
+                <TableHead className="bg-gray-200 text-center text-black">#</TableHead>
+                <TableHead className="bg-gray-200 text-black">Nama</TableHead>
+                <TableHead className="bg-gray-200 text-black">Jam Absen</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -169,9 +169,9 @@ export default function MasjidDetail() {
               ) : rekapanAbsen.length > 0 ? (
                 rekapanAbsen.map((record, index) => (
                   <TableRow key={index} className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}>
-                    <TableCell className="py-2 px-4 text-center">{index + 1}</TableCell>
-                    <TableCell className="py-2 px-4">{record.fullname}</TableCell>
-                    <TableCell className="py-2 px-4">{format(parseISO(record.jam), "HH:mm:ss")}</TableCell>
+                    <TableCell className="py-2 px-4 text-center text-black">{index + 1}</TableCell>
+                    <TableCell className="py-2 px-4 text-black">{record.fullname}</TableCell>
+                    <TableCell className="py-2 px-4 text-black">{format(parseISO(record.jam), "HH:mm:ss")}</TableCell>
                   </TableRow>
                 ))
               ) : (

@@ -27,12 +27,12 @@ export const NavMenu = (props: NavigationMenuProps) => (
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/pejuang-quran">Pejuang Quran</Link>
+          <Link href="/pejuang-quran">Pejuang Qur'an</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/smart-itikaf">Smart Itikaf</Link>
+          <Link href="/smart-itikaf">Smart I'tikaf</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>

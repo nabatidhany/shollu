@@ -12,11 +12,11 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Shollu - Bersama Meraih Keberkahan: Hafalan, Itikaf, & Sholat Berjamaah",
   description:
-    "Selamat datang di platform resmi untuk tiga program utama kami: Pejuang Quran, Pejuang Itikaf, dan Sholat Champion. Mari berkontribusi dalam memperbanyak amal ibadah dan mencatat perjalanan spiritual Anda dengan sistem modern berbasis QR Code.",
+    "Selamat datang di platform resmi untuk tiga program utama kami: Pejuang Qur'an, Pejuang Itikaf, dan Sholat Champion. Mari berkontribusi dalam memperbanyak amal ibadah dan mencatat perjalanan spiritual Anda dengan sistem modern berbasis QR Code.",
   keywords: [
     "Shollu",
     "Sholat Champion",
-    "Pejuang Quran",
+    "Pejuang Qur'an",
     "Pejuang Itikaf",
     "Itikaf",
     "Sumatera Barat",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     url: "https://shollu.com",
     title: "Shollu - Bersama Meraih Keberkahan: Hafalan, Itikaf, & Sholat Berjamaah",
     description:
-      "Selamat datang di platform resmi untuk tiga program utama kami: Pejuang Quran, Pejuang Itikaf, dan Sholat Champion. Mari berkontribusi dalam memperbanyak amal ibadah dan mencatat perjalanan spiritual Anda dengan sistem modern berbasis QR Code.",
+      "Selamat datang di platform resmi untuk tiga program utama kami: Pejuang Qur'an, Pejuang Itikaf, dan Sholat Champion. Mari berkontribusi dalam memperbanyak amal ibadah dan mencatat perjalanan spiritual Anda dengan sistem modern berbasis QR Code.",
     images: [
       {
         url: "/favicon.png",

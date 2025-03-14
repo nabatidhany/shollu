@@ -5,7 +5,7 @@ const Stats01Page = () => {
     <div className="min-h-screen flex items-center justify-center max-w-2xl mx-auto text-center">
       <div className="max-w-screen-xl mx-auto py-12 text-center">
         <h2 className="text-4xl md:text-5xl font-semibold">Shollu</h2>
-        <p className="mt-6 text-lg px-2">Selamat datang di platform resmi untuk tiga program utama kami: Pejuang Quran, Pejuang Itikaf, dan Sholat Champion.
+        <p className="mt-6 text-lg px-2">Selamat datang di platform resmi untuk tiga program utama kami: Pejuang Qur'an, Pejuang Itikaf, dan Sholat Champion.
         Mari berkontribusi dalam memperbanyak amal ibadah dan mencatat perjalanan spiritual Anda dengan sistem modern berbasis QR Code.</p>
 
         <div className="mt-16 sm:mt-24 px-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 justify-center text-center">

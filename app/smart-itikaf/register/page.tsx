@@ -103,7 +103,7 @@ export default function RegisterPage() {
 
   return (
     <div className="max-w-lg mx-auto p-6 mt-20">
-      <h1 className="text-3xl font-bold mb-6">Registrasi Smart Itikaf</h1>
+      <h1 className="text-3xl font-bold mb-6">Registrasi Smart I'tikaf</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField control={form.control} name="fullName" render={({ field }) => (

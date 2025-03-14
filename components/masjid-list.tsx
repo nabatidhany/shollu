@@ -7,10 +7,10 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
 const masjidList = [
-  { name: "Masjid Al-Ikhlas", location: "Jakarta", events: ["Pejuang Quran", "Sholat Champion"] },
+  { name: "Masjid Al-Ikhlas", location: "Jakarta", events: ["Pejuang Qur'an", "Sholat Champion"] },
   { name: "Masjid An-Nur", location: "Bandung", events: ["Pejuang Itikaf"] },
   { name: "Masjid Al-Falah", location: "Surabaya", events: ["Sholat Champion"] },
-  { name: "Masjid At-Taqwa", location: "Yogyakarta", events: ["Pejuang Quran", "Pejuang Itikaf"] },
+  { name: "Masjid At-Taqwa", location: "Yogyakarta", events: ["Pejuang Qur'an", "Pejuang Itikaf"] },
 ];
 
 export default function MasjidList(props: { event_id: number }) {

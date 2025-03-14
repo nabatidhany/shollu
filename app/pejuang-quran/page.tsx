@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Pejuang Qur'an 2025 - Membiasakan Sholat dan Tilawah di Bulan Ramadhan",
     description: "Pejuang Qur'an adalah program Ramadhan bagi anak-anak dan remaja untuk membiasakan sholat berjamaah, tilawah Al-Qur'an, dan sholat sunnah syuruq. Bergabung sekarang dan raih keberkahan!",
-    keywords: "pejuang quran, hafalan quran, tilawah, sholat subuh, syuruq, masjid, anak-anak, remaja, ramadhan",
+    keywords: "pejuang qur'an, hafalan quran, tilawah, sholat subuh, syuruq, masjid, anak-anak, remaja, ramadhan",
     authors: [{ name: "Shollu" }],
     openGraph: {
       title: "Pejuang Qur'an 2025 - Membiasakan Sholat dan Tilawah di Bulan Ramadhan",
@@ -53,10 +53,10 @@ export default function HomePejuangQuran() {
             <div className="flex flex-col items-center p-16 pt-20 text-center lg:items-start lg:text-left">
               <p>Event Ramadhan 2025</p>
               <h1 className="my-6 text-4xl font-bold text-pretty lg:text-6xl">
-                Pejuang Quran
+                Pejuang Qur'an
               </h1>
               <p className="mb-8 max-w-xl text-muted-foreground lg:text-xl">
-                Pejuang Quran adalah program yang di rancang khusus untuk anak anak dan remaja selama bulan Ramadhan. Program ini dimulai dari waktu Subuh sampai dengan waktu Syuruq
+                Pejuang Qur'an adalah program yang di rancang khusus untuk anak anak dan remaja selama bulan Ramadhan. Program ini dimulai dari waktu Subuh sampai dengan waktu Syuruq
               </p>
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
                 <Button>

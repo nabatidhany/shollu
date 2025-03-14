@@ -8,10 +8,10 @@ const testimonials = [
   {
     id: 1,
     name: "Ahmad Fadilah",
-    designation: "Peserta Pejuang Quran",
+    designation: "Peserta Pejuang Qur'an",
     company: "Masjid Al-Falah",
     testimonial:
-      "Program Pejuang Quran sangat membantu saya dalam meningkatkan hafalan. Suasananya nyaman dan penuh semangat!",
+      "Program Pejuang Qur'an sangat membantu saya dalam meningkatkan hafalan. Suasananya nyaman dan penuh semangat!",
     avatar: "https://randomuser.me/api/portraits/men/10.jpg",
   },
   {

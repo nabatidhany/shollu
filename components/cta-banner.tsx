@@ -31,7 +31,7 @@ export default function CTABanner() {
             Bersiap Menjadi Pejuang Ibadah?
           </h3>
           <p className="mt-2 text-base md:text-lg">
-            Jadikan Ramadhan tahun ini lebih bermakna! Daftar sekarang untuk mengikuti Pejuang Quran, Pejuang Itikaf, dan Sholat Champion.
+            Jadikan Ramadhan tahun ini lebih bermakna! Daftar sekarang untuk mengikuti Pejuang Qur'an, Pejuang Itikaf, dan Sholat Champion.
           </p>
         </div>
         <div className="relative z-0 mt-14 flex flex-col sm:flex-row gap-4">

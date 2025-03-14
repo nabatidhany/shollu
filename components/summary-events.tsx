@@ -88,10 +88,10 @@ const EventSummaries = () => {
         >
           <TabsList className="h-11 px-1.5 rounded-full bg-primary/5">
             <TabsTrigger value="pejuang-quran" className="py-1.5 rounded-full">
-              Pejuang Quran
+              Pejuang Qur'an
             </TabsTrigger>
             <TabsTrigger value="itikaf-akbar" className="py-1.5 rounded-full">
-              Smart Itikaf
+              Smart I'tikaf
             </TabsTrigger>
             <TabsTrigger value="sholat-champion" className="py-1.5 rounded-full">
               Sholat Champions

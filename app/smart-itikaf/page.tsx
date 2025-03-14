@@ -10,13 +10,13 @@ import FloatingShare from '@/components/FloatingShare'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Smart Itikaf 2025 - Mendekatkan Diri kepada Allah",
-    description: "Ikuti Smart Itikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
-    keywords: "itikaf, Smart Itikaf, ramadhan, ibadah, masjid, qiyamul lail, sahur bersama, sholat malam",
-    authors: [{ name: "Smart Itikaf 2025" }],
+    title: "Smart I'tikaf 2025 - Mendekatkan Diri kepada Allah",
+    description: "Ikuti Smart I'tikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
+    keywords: "i'tikaf, Smart I'tikaf, ramadhan, ibadah, masjid, qiyamul lail, sahur bersama, sholat malam",
+    authors: [{ name: "Smart I'tikaf 2025" }],
     openGraph: {
-      title: "Smart Itikaf 2025 - Mendekatkan Diri kepada Allah",
-      description: "Ikuti Smart Itikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
+      title: "Smart I'tikaf 2025 - Mendekatkan Diri kepada Allah",
+      description: "Ikuti Smart I'tikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
       images: [{
         url: "/favicon.png",
         width: 1200,
@@ -28,8 +28,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Smart Itikaf 2025 - Mendekatkan Diri kepada Allah",
-      description: "Ikuti Smart Itikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
+      title: "Smart I'tikaf 2025 - Mendekatkan Diri kepada Allah",
+      description: "Ikuti Smart I'tikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan.",
       images: [
         {
           url: "/favicon.png",
@@ -53,7 +53,7 @@ export default function HomeItikafAkbar() {
             <div className="flex flex-col items-center pt-20 p-16 text-center lg:items-start lg:text-left">
               <p>Event Ramadhan 2025</p>
               <h1 className="my-6 text-4xl font-bold text-pretty lg:text-6xl">
-                Smart Itikaf
+                Smart I'tikaf
               </h1>
               <p className="mb-8 max-w-xl text-muted-foreground lg:text-xl">
                 Smart I'tikaf adalah sebuah Agregator/Platform yang membantu Pemerintahan dan Panitia I'tikaf dalam mentransformasikan absensi manual ke absensi digital dengan sistem QR Code, sehingga dapat memantau jumlah peserta I'tikaf se-Kota Padang.
@@ -113,7 +113,7 @@ export default function HomeItikafAkbar() {
                     <li>3. Fokus pada ibadah, seperti shalat, membaca Al-Quran, dan berdzikir</li>
                   </ul>
                   <p className="text-white/80 mt-4">
-                    Smart Itikaf bukan sekadar berdiam diri di masjid, tetapi juga momen untuk memperbanyak ibadah, muhasabah diri, dan mendekatkan hati kepada Allah. Bergabung dalam Smart Itikaf berarti bergabung dalam perjalanan spiritual yang penuh keberkahan.
+                    Smart I'tikaf bukan sekadar berdiam diri di masjid, tetapi juga momen untuk memperbanyak ibadah, muhasabah diri, dan mendekatkan hati kepada Allah. Bergabung dalam Smart I'tikaf berarti bergabung dalam perjalanan spiritual yang penuh keberkahan.
                   </p>
                   <p className="text-white/100 mt-4">
                     Menuju Padang Kota Lailatul Qadar Informasi dan konfirmasi 0821 2674 3684 No Rekening: BSI 7269942872 an. Rumah Pemimpin Inspirasi
@@ -188,8 +188,8 @@ export default function HomeItikafAkbar() {
         <CTABanner />
       </section>
       <FloatingShare
-        title="Smart Itikaf 2025"
-        text="Ikuti Smart Itikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan."
+        title="Smart I'tikaf 2025"
+        text="Ikuti Smart I'tikaf 2025 di berbagai masjid rekanan kami. Program eksklusif untuk mendekatkan diri kepada Allah di 10 malam terakhir Ramadhan."
         url="https://shollu.com/smart-itikaf"
       />
     </>

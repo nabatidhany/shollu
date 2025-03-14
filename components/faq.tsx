@@ -38,7 +38,7 @@ const faq = [
   },
   {
     icon: MapPin,
-    question: "Apakah Pejuang Quran harus dilakukan di masjid tertentu?",
+    question: "Apakah Pejuang Qur'an harus dilakukan di masjid tertentu?",
     answer: "Ya, kegiatan ini hanya bisa dilakukan di masjid-masjid rekanan yang sudah terdaftar dalam sistem.",
   },
   {
