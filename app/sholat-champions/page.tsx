@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Sholat Champions 2025 - Kompetisi dan Monitoring Sholat Berjamaah",
       description: "Ikuti Sholat Champions 2025, program kompetisi dan monitoring sholat berjamaah bagi anak-anak dan remaja menggunakan sistem QR Code atau Fingerprint. Raih hadiah bagi peserta terbaik!",
       images: [{
-        url: "/banner/banner1.jpg",
+        url: "/banner/sholat-champions.JPG",
         width: 1200,
         height: 630,
         alt: "Shollu",
@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: "Ikuti Sholat Champions 2025, program kompetisi dan monitoring sholat berjamaah bagi anak-anak dan remaja menggunakan sistem QR Code atau Fingerprint. Raih hadiah bagi peserta terbaik!",
       images: [
         {
-          url: "/banner/banner1.jpg",
+          url: "/banner/sholat-champions.JPG",
           width: 1200,
           height: 630,
           alt: "Shollu",
