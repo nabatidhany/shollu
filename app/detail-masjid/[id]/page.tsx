@@ -7,6 +7,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { format, parseISO } from "date-fns";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const eventsGlobal = [
   { id: 1, name: "Pejuang Qur'an" },
@@ -73,6 +75,51 @@ export default function MasjidDetail() {
   if (!masjidProfile) {
     return <div className="text-center mt-32">Loading...</div>;
   }
+
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    const formattedDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "";
+    const fileName = `Rekap_Absensi_${masjidProfile?.name}_${formattedDate}.pdf`;
+
+    // Kop Surat dengan layout lebih baik
+    doc.setFontSize(18);
+    doc.setFont("helvetica", "bold");
+    doc.text(masjidProfile?.name, 105, 20, { align: "center" });
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "normal");
+    const alamat = doc.splitTextToSize(masjidProfile?.alamat, 120);
+    doc.text(alamat, 105, 32, { align: "center" });
+    doc.setFontSize(10);
+    doc.text(`Rekap Abensi Event ${eventsGlobal.find(e => e.id === selectedEvent)?.name} ${format(formattedDate, "dd MMMM yyyy")}` || "", 105, 26, { align: "center" });
+    doc.setLineWidth(0.5);
+    doc.line(20, 38, 190, 38);
+
+    // Data Absensi dengan Pagination Otomatis
+    const tableColumn = ["#", "Nama", "Jam Absen"];
+    const tableRows: any[] = [];
+    rekapanAbsen.forEach((record, index) => {
+      const rowData = [index + 1, record.fullname, format(parseISO(record.jam), "HH:mm:ss")];
+      tableRows.push(rowData);
+    });
+
+    autoTable(doc, {
+      startY: 48,
+      head: [tableColumn],
+      body: tableRows,
+      styles: { fontSize: 10, cellPadding: 3 },
+      headStyles: { fillColor: [6, 104, 91], textColor: 255, fontStyle: "bold" },
+      alternateRowStyles: { fillColor: [240, 240, 240] },
+      didDrawPage: function (data) {
+        doc.setFontSize(10);
+        doc.text("Generated via shollu.com", 105, doc.internal.pageSize.height - 10, { align: "center" });
+        doc.addImage("/watermark.png", "PNG", 120, doc.internal.pageSize.height - 90, 120, 120, undefined, "FAST");
+        // doc.addImage("/watermark.png", "PNG", 60, 120, 90, 90, undefined, "FAST");
+      },
+      margin: { top: 48 },
+    });
+
+    doc.save(fileName);
+  };
 
   return (
     <div className="w-full mx-auto px-0">
@@ -148,6 +195,8 @@ export default function MasjidDetail() {
             </Select>
           </div>
         )}
+
+        <Button onClick={downloadPDF} className="my-4 w-full">Download PDF</Button>
 
         {/* Tabel Rekapan */}
         <div className="overflow-x-auto">
