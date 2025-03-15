@@ -84,6 +84,11 @@ export default function RegisterPage() {
       if (response.ok) {
         setIsSuccess(true);
         form.reset();
+        // Buka tab baru jika ada qr_code dalam response
+        if (data.qr_code || data.is_peserta) {
+          window.open(`https://shollu.site/qr_code/${data.is_peserta}/2`, "_blank");
+          // window.open(`https://shollu.site/qr_code/${data.qr_code}`, "_blank");
+        }
       } else {
         setErrorMessage(data?.error || "Terjadi kesalahan saat pendaftaran");
         console.error("Pendaftaran gagal", response);
@@ -206,7 +211,7 @@ export default function RegisterPage() {
           <DialogHeader>
             <DialogTitle>Pendaftaran Berhasil!</DialogTitle>
           </DialogHeader>
-          <p className="text-center">Silakan ambil kartu Anda pada hari acara atau H-3 acara ke panitia.</p>
+          <p className="text-center">Silakan ambil kartu simpan kartu anda tadi untuk menjadi tanda pengenal dalam event ini.</p>
           <DialogFooter>
             <Button onClick={resetForm}>OK</Button>
           </DialogFooter>

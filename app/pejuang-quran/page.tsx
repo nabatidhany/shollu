@@ -59,10 +59,6 @@ export default function HomePejuangQuran() {
                 Pejuang Qur'an adalah program yang di rancang khusus untuk anak anak dan remaja selama bulan Ramadhan. Program ini dimulai dari waktu Subuh sampai dengan waktu Syuruq
               </p>
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
-                <Button>
-                  Daftar Sekarang
-                  <ArrowRight className="size-4" />
-                </Button>
                 <Link href="#rekapan">
                   <Button variant="ghost">Lihat Rekapan Hafalan</Button>
                 </Link>
