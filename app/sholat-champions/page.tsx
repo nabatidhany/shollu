@@ -69,7 +69,7 @@ export default function HomeSholatChampions() {
             </div>
             {/* Gambar */}
             <img
-              src="/banner/sholat-champions.jpg"
+              src="/banner/sholat-champions.JPG"
               alt="placeholder hero"
               className="h-full w-full object-cover order-first lg:order-none"
             />
