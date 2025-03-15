@@ -138,7 +138,7 @@ export default function DashboardSummary() {
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={barData}>
+            <BarChart data={masjidBarData}>
               {/* Pastikan XAxis menampilkan nama masjid */}
               <XAxis 
                 dataKey="masjid" 
