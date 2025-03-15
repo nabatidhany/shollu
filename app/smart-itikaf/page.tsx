@@ -56,7 +56,7 @@ export default function HomeItikafAkbar() {
                 Smart I'tikaf
               </h1>
               <p className="mb-8 max-w-xl text-muted-foreground lg:text-xl">
-                Smart I'tikaf adalah sebuah Agregator/Platform yang membantu Pemerintahan dan Panitia I'tikaf dalam mentransformasikan absensi manual ke absensi digital dengan sistem QR Code, sehingga dapat memantau jumlah peserta I'tikaf se-Kota Padang.
+                Smart I'tikaf adalah sebuah Agregator/Platform yang membantu Pemerintahan dan Panitia I'tikaf dalam mentransformasikan absensi manual ke absensi digital dengan sistem QR Code, sehingga dapat memantau jumlah peserta I'tikaf di kota tertentu.
               </p>
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
                 <Link href={`/smart-itikaf/register`}>
@@ -116,7 +116,7 @@ export default function HomeItikafAkbar() {
                     Smart I'tikaf bukan sekadar berdiam diri di masjid, tetapi juga momen untuk memperbanyak ibadah, muhasabah diri, dan mendekatkan hati kepada Allah. Bergabung dalam Smart I'tikaf berarti bergabung dalam perjalanan spiritual yang penuh keberkahan.
                   </p>
                   <p className="text-white/100 mt-4">
-                    Menuju Padang Kota Lailatul Qadar Informasi dan konfirmasi 0821 2674 3684 No Rekening: BSI 7269942872 an. Rumah Pemimpin Inspirasi
+                    Untuk Informasi Infaq malam Lailatur Qadar untuk Wakaf Mesin dan Operasional Festival Pejuang Sholat dan konfirmasi 0821 2674 3684 No Rekening: BSI 7269942872 an. Rumah Pemimpin Inspirasi
                   </p>
                 </div>
                 <h2 className="mb-2.5 text-3xl font-semibold md:text-5xl">
