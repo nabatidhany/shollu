@@ -233,6 +233,10 @@ export default function MasjidDetail() {
             </TableBody>
           </Table>
         </div>
+        {/* Total Data */}
+        <div className="mt-4 p-4 bg-gray-100 rounded-lg text-center">
+          <p className="text-lg font-semibold">Total Absensi: {rekapanAbsen.length}</p>
+        </div>
       </div>
     </div>
   );
