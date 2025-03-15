@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import Layout from "@/components/layout";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -98,6 +99,7 @@ export default function RootLayout({
           <TooltipProvider>
             <Layout>
               {children}
+              <Analytics />
             </Layout>
             </TooltipProvider>
         </ThemeProvider>

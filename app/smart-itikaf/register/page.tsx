@@ -211,7 +211,7 @@ export default function RegisterPage() {
           <DialogHeader>
             <DialogTitle>Pendaftaran Berhasil!</DialogTitle>
           </DialogHeader>
-          <p className="text-center">Silakan ambil kartu simpan kartu anda tadi untuk menjadi tanda pengenal dalam event ini.</p>
+          <p className="text-center">Kartu anda akan terdownload otomatis dan bawa saat acara untuk menjadi tanda pengenal dalam event ini.</p>
           <DialogFooter>
             <Button onClick={resetForm}>OK</Button>
           </DialogFooter>
