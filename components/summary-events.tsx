@@ -70,7 +70,7 @@ const plans = [
 ];
 
 const EventSummaries = () => {
-  const [selectedBillingPeriod, setSelectedBillingPeriod] = useState("pejuang-quran");
+  const [selectedBillingPeriod, setSelectedBillingPeriod] = useState("itikaf-akbar");
 
   return (
     <div
