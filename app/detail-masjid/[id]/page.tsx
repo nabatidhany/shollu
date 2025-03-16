@@ -219,7 +219,13 @@ export default function MasjidDetail() {
                 rekapanAbsen.map((record, index) => (
                   <TableRow key={index} className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}>
                     <TableCell className="py-2 px-4 text-center text-black">{index + 1}</TableCell>
-                    <TableCell className="py-2 px-4 text-black">{record.fullname}</TableCell>
+                    <TableCell className="py-2 px-4 text-black">
+                      {
+                        record.isHideName === 1
+                        ? `${record.fullname.charAt(0)}${'*'.repeat(record.fullname.length - 1)}`
+                        : record.fullname
+                      }
+                    </TableCell>
                     <TableCell className="py-2 px-4 text-black">{format(parseISO(record.jam), "HH:mm:ss")}</TableCell>
                   </TableRow>
                 ))
