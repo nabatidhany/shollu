@@ -25,44 +25,44 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 const COLORS = ["#22c55e", "#e2e8f0"];
 
-export default function DashboardSummary() {
-  const [eventStats, setEventStats] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const eventID = 2; // Bisa diganti sesuai kebutuhan
+export default function DashboardSummary({data, loading}: any) {
+  const [eventStats, setEventStats] = useState<any>(data);
+  // const [loading, setLoading] = useState(true);
+  // const eventID = 2; // Bisa diganti sesuai kebutuhan
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await axios.get(`https://api.shollu.com/api/statistics-event?event_id=${eventID}`);
-        setEventStats(res.data);
-      } catch (error) {
-        console.error("Error fetching statistics:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, [eventID]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const res = await axios.get(`https://api.shollu.com/api/statistics-event?event_id=${eventID}`);
+  //       setEventStats(res.data);
+  //     } catch (error) {
+  //       console.error("Error fetching statistics:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   fetchData();
+  // }, [eventID]);
 
   if (loading) return <div className="text-center text-gray-500">Memuat data...</div>;
-  if (!eventStats) return <div className="text-center text-red-500">Gagal memuat data</div>;
+  // if (!eventStats) return <div className="text-center text-red-500">Gagal memuat data</div>;
 
   const stats = [
-    { icon: <Users className="text-green-600" />, title: "Total Peserta Hadir", value: `${eventStats.total_absen} dari ${eventStats.total_peserta}` },
-    { icon: <Percent className="text-green-600" />, title: "Tingkat Kehadiran", value: `${eventStats.persen_hadir.toFixed(2)}%` },
+    { icon: <Users className="text-green-600" />, title: "Total Peserta Hadir", value: `${data.total_absen} dari ${data.total_peserta}` },
+    { icon: <Percent className="text-green-600" />, title: "Tingkat Kehadiran", value: `${data.persen_hadir.toFixed(2)}%` },
   ];
 
   const barData = [
-    { gender: "male", peserta: eventStats.total_male },
-    { gender: "female", peserta: eventStats.total_female },
+    { gender: "male", peserta: data.total_male },
+    { gender: "female", peserta: data.total_female },
   ];
 
   const pieChartData = [
-    { name: "Hadir", value: eventStats.total_absen },
-    { name: "Absen", value: eventStats.total_peserta - eventStats.total_absen },
+    { name: "Hadir", value: data.total_absen },
+    { name: "Absen", value: data.total_peserta - data.total_absen },
   ];
 
-  const masjidBarData = eventStats.masjid_stats.map((masjid: any) => ({
+  const masjidBarData = data.masjid_stats.map((masjid: any) => ({
     masjid: masjid.masjid_nama,
     male: masjid.male_count,
     female: masjid.female_count,

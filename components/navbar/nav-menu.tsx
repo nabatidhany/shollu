@@ -40,7 +40,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
           <Link href="/sholat-champions">Sholat Champions</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
-      <NavigationMenuItem>
+      <NavigationMenuItem className="block lg:hidden">
         <NavigationMenuLink asChild>
           <div className="flex flex-col items-start">
             <h3 className="text-lg font-semibold mb-2">Download Aplikasi</h3>

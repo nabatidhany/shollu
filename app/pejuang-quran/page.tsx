@@ -7,6 +7,7 @@ import DashboardSummaryPejuangQuran from '@/components/dashboard-pejuang-qura'
 import CTABanner from '@/components/cta-banner-masjid'
 import { Metadata } from 'next'
 import FloatingShare from '@/components/FloatingShare'
+import StatistikEvent from '@/components/statistik-event'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -73,13 +74,14 @@ export default function HomePejuangQuran() {
           </div>
         </div>
       </section>
-      <section>
+      <StatistikEvent id_event={1} />
+      {/* <section>
         <div id='rekapan' className='container mx-auto max-w-6xl px-8 lg:px-0'>
           <MasjidList event_id={1} />
           <hr className='my-8 border-t border-muted-2' />
           <DashboardSummaryPejuangQuran />
         </div>
-      </section>
+      </section> */}
       <section>
         <div className="container mx-auto max-w-6xl px-8 lg:px-0">
           <section className="py-10">

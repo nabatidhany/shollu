@@ -6,33 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
-export default function MasjidList(props: { event_id: number }) {
-  const { event_id } = props;
+export default function MasjidListNew({data}: any) {
   const [search, setSearch] = useState("");
-  const [masjidList, setMasjidList] = useState<{ id: number; name: string; alamat: string }[]>([]);
+  // const [masjidList, setMasjidList] = useState<any>(data);
 
-  useEffect(() => {
-      const fetchMasjid = async () => {
-        try {
-          const response = await fetch(`https://api.shollu.com/api/register-masjid/${event_id}`);
-          const data = await response.json();
-          if (response.ok) {
-            setMasjidList(data.data);
-          } else {
-            console.error("Gagal mengambil daftar masjid:", data);
-          }
-        } catch (error) {
-          console.error("Kesalahan jaringan:", error);
-        }
-      };
-  
-      fetchMasjid();
-    }, []);
-
-  const filteredMasjid = masjidList.filter(
-    (masjid) =>
-      masjid.name.toLowerCase().includes(search.toLowerCase()) ||
-      masjid.alamat.toLowerCase().includes(search.toLowerCase())
+  const filteredMasjid = data?.filter(
+    (masjid: any) =>
+      masjid.masjid_nama.toLowerCase().includes(search.toLowerCase()) ||
+      masjid.masjid_alamat.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -51,7 +32,7 @@ export default function MasjidList(props: { event_id: number }) {
         </div>
         <div className="flex flex-col">
           <Separator />
-          {filteredMasjid.map((masjid, index) => (
+          {filteredMasjid.map((masjid: any, index:any) => (
             <div key={index}>
               <div className="grid items-center gap-4 px-4 py-5 md:grid-cols-2">
                 <div className="order-2 flex items-center gap-2 md:order-none">
@@ -59,8 +40,9 @@ export default function MasjidList(props: { event_id: number }) {
                     <TowerControl size={24} />
                   </span>
                   <div className="flex flex-col gap-1">
-                    <h3 className="font-semibold">{masjid.name}</h3>
-                    <p className="text-sm text-muted-foreground">{masjid.alamat}</p>
+                    <h3 className="font-semibold">{masjid?.masjid_nama}</h3>
+                    <p className="text-sm text-muted-foreground">{masjid?.masjid_alamat}</p>
+                    <p className="text-sm text-green-600 font-bold">Jumlah Kehadiran: {masjid?.total_count}</p>
                   </div>
                 </div>
                 <Button variant="outline" asChild>
