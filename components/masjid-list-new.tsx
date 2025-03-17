@@ -5,16 +5,22 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { Badge } from "./ui/badge";
 
 export default function MasjidListNew({data}: any) {
   const [search, setSearch] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("Semua");
+
+  const regions: any = ["Semua", ...new Set(data?.map((masjid: any) => masjid.masjid_regional))];
   // const [masjidList, setMasjidList] = useState<any>(data);
 
-  const filteredMasjid = data?.filter(
-    (masjid: any) =>
+  const filteredMasjid = data?.filter((masjid: any) => {
+    const matchesSearch =
       masjid.masjid_nama.toLowerCase().includes(search.toLowerCase()) ||
-      masjid.masjid_alamat.toLowerCase().includes(search.toLowerCase())
-  );
+      masjid.masjid_alamat.toLowerCase().includes(search.toLowerCase());
+    const matchesRegion = selectedRegion === "Semua" || masjid.masjid_regional === selectedRegion;
+    return matchesSearch && matchesRegion;
+  });
 
   return (
     <section className="py-0">
@@ -30,6 +36,19 @@ export default function MasjidListNew({data}: any) {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
+        {/* Filter Regional */}
+        <div className="mb-4 flex flex-wrap gap-2">
+          {regions.map((region: any, index: any) => (
+            <Badge
+              key={index}
+              variant={selectedRegion === region ? "default" : "outline"}
+              className="cursor-pointer"
+              onClick={() => setSelectedRegion(region)}
+            >
+              {region}
+            </Badge>
+          ))}
+        </div>
         <div className="flex flex-col">
           <Separator />
           {filteredMasjid.map((masjid: any, index:any) => (
@@ -42,7 +61,7 @@ export default function MasjidListNew({data}: any) {
                   <div className="flex flex-col gap-1">
                     <h3 className="font-semibold">{masjid?.masjid_nama}</h3>
                     <p className="text-sm text-muted-foreground">{masjid?.masjid_alamat}</p>
-                    <p className="text-sm text-green-600 font-bold">Jumlah Kehadiran: {masjid?.total_count}</p>
+                    <p className="text-sm text-green-600 font-bold">Jumlah Kehadiran Hari ini: {masjid?.total_count}</p>
                   </div>
                 </div>
                 <Button variant="outline" asChild>

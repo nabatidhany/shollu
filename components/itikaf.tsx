@@ -4,6 +4,7 @@ import DashboardSummary from "./dashboard-pejuang-qura";
 import { Button } from "./ui/button";
 import DashboardSummaryItikaf from "./dashboard-itikaf";
 import Link from "next/link";
+import StatistikEvent from "./statistik-event";
 
 interface Feature {
   id: string;
@@ -19,7 +20,8 @@ const Itikaf = () => {
         <div className="lg:max-w-5xl">
         </div>
         <div>
-          <DashboardSummaryItikaf />
+          {/* <DashboardSummaryItikaf /> */}
+          <StatistikEvent id_event={2} />
           <div className="flex justify-center items-center">
             <Link href="/smart-itikaf">
               <Button>

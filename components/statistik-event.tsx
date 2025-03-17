@@ -26,9 +26,9 @@ export default function StatistikEvent({id_event}: any) {
   return (
     <>
       <section>
-        <div id='rekapan' className='container mx-auto max-w-6xl px-8 lg:px-0'>
-          {/* <MasjidListNew data={eventStats?.masjid_stats || []} /> */}
-          <MasjidList event_id={id_event} />
+        <div id='rekapan' className='container mx-auto max-w-6xl px-0 lg:px-0'>
+          <MasjidListNew data={eventStats?.masjid_stats || []} />
+          {/* <MasjidList event_id={id_event} /> */}
           <hr className='my-8 border-t border-muted-2' />
           <DashboardSummaryItikaf data={eventStats} loading={loading} />
         </div>

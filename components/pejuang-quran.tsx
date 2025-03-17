@@ -3,6 +3,7 @@ import MasjidList from "./masjid-list";
 import DashboardSummary from "./dashboard-pejuang-qura";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import StatistikEvent from "./statistik-event";
 
 interface Feature {
   id: string;
@@ -18,7 +19,8 @@ const PejuangQuran = () => {
         <div className="lg:max-w-5xl">
         </div>
         <div>
-          <DashboardSummary />
+          {/* <DashboardSummary /> */}
+          <StatistikEvent id_event={1} />
           <div className="flex justify-center items-center">
             <Link href="/pejuang-quran">
               <Button>
