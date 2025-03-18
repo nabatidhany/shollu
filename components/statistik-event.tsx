@@ -39,7 +39,7 @@ export default function StatistikEvent({id_event, isHome}: any) {
                   <div
                     key={idx}
                     className={`flex items-center justify-between p-2 rounded-lg mb-2 shadow-md border
-                      ${idx === 0 ? "bg-yellow-500 text-black font-bold border-yellow-600 scale-105 animate-pulse-border" : ""}
+                      ${idx === 0 ? "bg-yellow-500 text-black font-bold border-yellow-600 scale-105 animate-pulse-border-top" : ""}
                       ${idx === 1 ? "bg-blue-950 text-white border-yellow-400" : ""}
                       ${idx === 2 ? "bg-blue-950 text-white border-yellow-500" : ""}
                       ${idx > 2 ? "bg-white text-black border-gray-200" : ""}
