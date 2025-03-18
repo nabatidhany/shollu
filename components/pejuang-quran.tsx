@@ -20,7 +20,7 @@ const PejuangQuran = () => {
         </div>
         <div>
           {/* <DashboardSummary /> */}
-          <StatistikEvent id_event={1} />
+          <StatistikEvent id_event={1} isHome={true} />
           <div className="flex justify-center items-center">
             <Link href="/pejuang-quran">
               <Button>

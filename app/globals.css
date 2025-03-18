@@ -122,3 +122,20 @@
     @apply text-foreground;
   }
 }
+
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 236, 25, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.578);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(247, 227, 3, 0.991);
+  }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 2s infinite;
+}

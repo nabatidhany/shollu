@@ -25,7 +25,7 @@ const Logos07Page = () => {
           </Marquee>
         </div>
         <div className="relative w-full justify-center items-center z-0 mt-8 flex flex-col sm:flex-row gap-4">
-          <Link href="https://wa.me/6285215003995?text=Assalamualaikum%20Admin%20Masjid%20Kami%20Ingin%20Bergabung%20dengan%20Kalian">
+          <Link target="_blank" href="https://wa.me/6285215003995?text=Assalamualaikum%20Admin%20Kami tertarik untuk menjadi sponsor">
             <Button size="lg">
               <PhoneCall className="!h-5 !w-5" /> Jadi Sponsor
             </Button>

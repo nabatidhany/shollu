@@ -21,7 +21,7 @@ const Itikaf = () => {
         </div>
         <div>
           {/* <DashboardSummaryItikaf /> */}
-          <StatistikEvent id_event={2} />
+          <StatistikEvent id_event={2} isHome={true} />
           <div className="flex justify-center items-center">
             <Link href="/smart-itikaf">
               <Button>
