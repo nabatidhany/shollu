@@ -86,7 +86,7 @@ export default function RegisterPage() {
         form.reset();
         // Buka tab baru jika ada qr_code dalam response
         if (data.qr_code || data.is_peserta) {
-          window.open(`https://shollu.site/qr_code/${data.is_peserta}/2`, "_blank");
+          window.open(`https://shollu.site/qr_code/${data.qr_code}`, "_blank");
           // window.open(`https://shollu.site/qr_code/${data.qr_code}`, "_blank");
         }
       } else {
