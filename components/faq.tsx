@@ -18,8 +18,8 @@ import {
 const faq = [
   {
     icon: BadgeDollarSign,
-    question: "Apakah program ini berbayar?",
-    answer: "Tidak, semua program ini gratis dan terbuka untuk umum.",
+    question: "Bagaimana Peraturan Smart Itikaf",
+    answer: "Untuk Peraturan, Kupon dan Makan Sahur gratis menyesuaikan dengan peraturan panitia setempat.",
   },
   {
     icon: UserRoundCheck,

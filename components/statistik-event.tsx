@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import MasjidList from "./masjid-list";
 import { Badge } from "./ui/badge";
+import Link from "next/link";
 export default function StatistikEvent({id_event, isHome}: any) {
   const [eventStats, setEventStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -36,19 +37,20 @@ export default function StatistikEvent({id_event, isHome}: any) {
               <Badge className="bg-yellow-600 mt-2">Smart Itikaf 2025</Badge>
               <div className="mt-4 max-w-6xl mx-auto">
                 {eventStats?.masjid_stats?.slice(0, 10).map((itm: any, idx: number) => (
-                  <div
-                    key={idx}
-                    className={`flex items-center justify-between p-2 rounded-lg mb-2 shadow-md border
-                      ${idx === 0 ? "bg-yellow-500 text-black font-bold border-yellow-600 scale-105 animate-pulse-border-top" : ""}
-                      ${idx === 1 ? "bg-blue-950 text-white border-yellow-400" : ""}
-                      ${idx === 2 ? "bg-blue-950 text-white border-yellow-500" : ""}
-                      ${idx > 2 ? "bg-white text-black border-gray-200" : ""}
-                    `}
-                  >
-                    <span className="text-md font-semibold w-8">{idx + 1}.</span>
-                    <span className="flex-1 text-left text-md break-words">{itm.masjid_nama}</span>
-                    <span className="text-md font-bold w-16 text-right">{itm.total_count}</span>
-                  </div>
+                  <Link key={idx} href={`/detail-masjid/${itm?.masjid_id}`}>
+                    <div
+                      className={`flex items-center justify-between p-2 rounded-lg mb-2 shadow-md border
+                        ${idx === 0 ? "bg-yellow-500 text-black font-bold border-yellow-600 scale-105 animate-pulse-border-top" : ""}
+                        ${idx === 1 ? "bg-blue-950 text-white border-yellow-400" : ""}
+                        ${idx === 2 ? "bg-blue-950 text-white border-yellow-500" : ""}
+                        ${idx > 2 ? "bg-white text-black border-gray-200" : ""}
+                      `}
+                    >
+                      <span className="text-md font-semibold w-8">{idx + 1}.</span>
+                      <span className="flex-1 text-left text-md break-words">{itm.masjid_nama}</span>
+                      <span className="text-md font-bold w-16 text-right">{itm.total_count}</span>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
