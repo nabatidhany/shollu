@@ -40,6 +40,11 @@ export const NavMenu = (props: NavigationMenuProps) => (
           <Link href="/sholat-champions">Sholat Champions</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
+      <NavigationMenuItem>
+        <NavigationMenuLink asChild>
+          <Link href="/petunjuk-panitia">Petunjuk Panitia/PJ</Link>
+        </NavigationMenuLink>
+      </NavigationMenuItem>
       <NavigationMenuItem className="block lg:hidden">
         <NavigationMenuLink asChild>
           <div className="flex flex-col items-start">

@@ -28,6 +28,10 @@ const footerLinks = [
     title: "Privacy",
     href: "#privacy",
   },
+  {
+    title: "Panduan Petugas",
+    href: "/petunjuk-panitia",
+  },
 ];
 
 const Footer = () => {
