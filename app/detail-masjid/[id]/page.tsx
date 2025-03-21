@@ -29,7 +29,7 @@ export default function MasjidDetail() {
   const params = useParams();
   const masjidId = params.id;
 
-  const [selectedEvent, setSelectedEvent] = useState<number>(1);
+  const [selectedEvent, setSelectedEvent] = useState<number>(2);
   const [selectedSholat, setSelectedSholat] = useState<string>("subuh");
   const [masjidProfile, setMasjidProfile] = useState<any>(null);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
