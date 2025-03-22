@@ -10,6 +10,12 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { Input } from "./ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
+};
+
 export default function StatistikEvent({id_event, isHome}: any) {
   const [eventStats, setEventStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -23,6 +29,7 @@ export default function StatistikEvent({id_event, isHome}: any) {
     return {
       label: `Hari ${i + 1} I'tikaf`, // Label Dropdown
       value: date.toISOString().split("T")[0], // Format YYYY-MM-DD
+      formatted: formatDate(date.toISOString().split("T")[0]), // "20 Maret 2025"
     };
   });
 
@@ -43,6 +50,10 @@ export default function StatistikEvent({id_event, isHome}: any) {
     }
     fetchData();
   }, [eventID, selectedDate]);
+
+  // Format tanggal yang dipilih
+  const formattedDate = formatDate(selectedDate);
+  const itikafDay = itikafDays.find((day) => day.value === selectedDate);
   return (
     <>
       <div className="flex items-center space-x-4 mb-7">
@@ -76,7 +87,11 @@ export default function StatistikEvent({id_event, isHome}: any) {
             <div className="container px-auto max-w-6xl bg-[#094641] text-white px-5 py-5 rounded-lg flex flex-col justify-center items-center animate-pulse-border">
               <Badge className="bg-red-600">Live Report</Badge>
               <h1 className="mt-2 text-2xl font-bold">TOP 10 LEADERBOARD</h1>
-              <Badge className="bg-yellow-600 mt-2">Smart Itikaf 2025</Badge>
+              <Badge className="bg-yellow-600 mt-2">
+                {eventID === 2
+                  ? `Smart Itikaf 2025 - ${itikafDay?.label} (${itikafDay?.formatted})`
+                  : `Event Tanggal: ${formattedDate}`}
+              </Badge>
               <div className="mt-4 max-w-6xl mx-auto">
                 {eventStats?.masjid_stats?.slice(0, 10).map((itm: any, idx: number) => (
                   <Link key={idx} href={`/detail-masjid/${itm?.masjid_id}`}>
