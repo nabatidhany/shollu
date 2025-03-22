@@ -7,15 +7,33 @@ import axios from "axios";
 import MasjidList from "./masjid-list";
 import { Badge } from "./ui/badge";
 import Link from "next/link";
+import { format } from "date-fns";
+import { Input } from "./ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 export default function StatistikEvent({id_event, isHome}: any) {
   const [eventStats, setEventStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const eventID = id_event; // Bisa diganti sesuai kebutuhan
+  const today = new Date().toISOString().split("T")[0];
+  // Jika event_id = 2, gunakan Hari 1 - Hari 10 I'tikaf
+  const itikafStartDate = new Date("2025-03-20"); // Hari 1 I'tikaf
+  const itikafDays = Array.from({ length: 10 }, (_, i) => {
+    const date = new Date(itikafStartDate);
+    date.setDate(itikafStartDate.getDate() + i);
+    return {
+      label: `Hari ${i + 1} I'tikaf`, // Label Dropdown
+      value: date.toISOString().split("T")[0], // Format YYYY-MM-DD
+    };
+  });
+
+  const defaultEventDate = eventID === 2 ? itikafDays[0].value : today;
+  const [selectedDate, setSelectedDate] = useState(today);
+
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get(`https://api.shollu.com/api/statistics-event?event_id=${eventID}`);
+        const res = await axios.get(`https://api.shollu.com/api/statistics-event?event_id=${eventID}&event_date=${selectedDate}`);
         setEventStats(res.data);
       } catch (error) {
         console.error("Error fetching statistics:", error);
@@ -24,12 +42,36 @@ export default function StatistikEvent({id_event, isHome}: any) {
       }
     }
     fetchData();
-  }, [eventID]);
+  }, [eventID, selectedDate]);
   return (
     <>
+      <div className="flex items-center space-x-4 mb-7">
+        {eventID === 2 ? (
+          // Jika event Itikaf (event_id = 2), gunakan Select
+          <Select value={selectedDate} onValueChange={(value) => setSelectedDate(value)}>
+            <SelectTrigger className="w-full border p-2 rounded-md">
+              <SelectValue placeholder="Pilih Hari I'tikaf" />
+            </SelectTrigger>
+            <SelectContent>
+              {itikafDays.map((day) => (
+                <SelectItem key={day.value} value={day.value}>
+                  {day.label} - {day.value}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ) : (
+          // Event lain tetap gunakan input date
+          <input
+            type="date"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+            className="border p-2 rounded-md w-full"
+          />
+        )}
+      </div>
       {
-        isHome && (
-
+        isHome && (eventID === 2) && (
           <section className="mb-6">
             <div className="container px-auto max-w-6xl bg-[#094641] text-white px-5 py-5 rounded-lg flex flex-col justify-center items-center animate-pulse-border">
               <Badge className="bg-red-600">Live Report</Badge>

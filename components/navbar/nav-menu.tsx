@@ -45,7 +45,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
           <Link href="/petunjuk-panitia">Petunjuk Panitia/PJ</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
-      <NavigationMenuItem className="block lg:hidden">
+      <NavigationMenuItem className="block lg:hidden md:hidden">
         <NavigationMenuLink asChild>
           <div className="flex flex-col items-start">
             <h3 className="text-lg font-semibold mb-2">Download Aplikasi</h3>
