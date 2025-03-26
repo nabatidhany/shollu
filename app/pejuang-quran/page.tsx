@@ -74,7 +74,9 @@ export default function HomePejuangQuran() {
           </div>
         </div>
       </section>
-      <StatistikEvent id_event={1} />
+      <div className='px-5'>
+        <StatistikEvent id_event={1} />
+      </div>
       {/* <section>
         <div id='rekapan' className='container mx-auto max-w-6xl px-8 lg:px-0'>
           <MasjidList event_id={1} />

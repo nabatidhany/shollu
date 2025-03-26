@@ -80,7 +80,9 @@ export default function HomeItikafAkbar() {
           </div>
         </div>
       </section>
-      <StatistikEvent id_event={2} />
+      <div className='px-5'>
+        <StatistikEvent id_event={2} />
+      </div>
       {/* <section>
         <div id='rekapan' className='container mx-auto max-w-6xl px-8 lg:px-0'>
           <MasjidList event_id={2} />
