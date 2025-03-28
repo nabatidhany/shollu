@@ -37,6 +37,20 @@ export default function StatistikEvent({id_event, isHome}: any) {
   const [selectedDate, setSelectedDate] = useState(today);
 
 
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const res = await axios.get(`https://api.shollu.com/api/statistics-event?event_id=${eventID}&event_date=${selectedDate}`);
+  //       setEventStats(res.data);
+  //     } catch (error) {
+  //       console.error("Error fetching statistics:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   fetchData();
+  // }, [eventID, selectedDate]);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -49,6 +63,8 @@ export default function StatistikEvent({id_event, isHome}: any) {
       }
     }
     fetchData();
+    const interval = setInterval(fetchData, 15000);
+    return () => clearInterval(interval);
   }, [eventID, selectedDate]);
 
   // Format tanggal yang dipilih
