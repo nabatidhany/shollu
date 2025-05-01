@@ -11,7 +11,7 @@ type CollectionMeta = {
   name: string;
   date_start: string;
   date_end: string;
-  masjid: string;
+  masjid_id: string;
 };
 
 type AbsenResponse = {
@@ -38,8 +38,7 @@ export default function CollectionPage() {
     const fetchMeta = async () => {
       const res = await fetch(`https://api.shollu.com/api/v1/collections-get-meta/${slug}`);
       const json = await res.json();
-      console.log(json)
-      setMeta(json?.collections[0]);
+      setMeta(json?.collections);
     };
     fetchMeta();
   }, [slug]);
@@ -64,8 +63,8 @@ export default function CollectionPage() {
         toDate = formatDate(today);
         break;
       case 'collection':
-        fromDate = meta.date_start;
-        toDate = meta.date_end;
+        fromDate = format(new Date(meta.date_start), 'yyyy-MM-dd');
+        toDate = format(new Date(meta.date_end), 'yyyy-MM-dd');
         break;
     }
 
@@ -81,13 +80,13 @@ export default function CollectionPage() {
   }, [filterType, selectedDate, meta, slug]);
 
   return (
-    <div className="p-4 mt-24">
-      <h1 className="text-xl font-bold mb-2">Collection: {meta?.name}</h1>
+    <div className="p-4 mt-24 container mx-auto max-w-6xl px-8">
+      <h1 className="text-xl font-bold mb-2">{meta?.name}</h1>
 
       {meta && (
             <div className="mb-4 border p-4 rounded bg-gray-50">
             <p><strong>Nama Koleksi:</strong> {meta.name}</p>
-            {/* <p><strong>ID Masjid:</strong> {meta.masjid}</p> */}
+            <p><strong>ID Masjid:</strong> {meta.masjid_id}</p>
             <p>
 							<strong>Periode:</strong>{' '}
 							{format(new Date(meta.date_start), 'dd MMMM yyyy', { locale: id })} s/d{' '}
@@ -96,25 +95,27 @@ export default function CollectionPage() {
             </div>
         )}
 
-      <div className="flex items-center gap-4 mb-4">
+      <div className="flex items-center gap-4 mb-4 flex-col lg:flex-row">
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value as any)}
-          className="border px-2 py-1 rounded"
+          className="border px-2 py-1 rounded w-full lg:w-[270px]"
         >
           <option value="harian">Harian</option>
           <option value="mingguan">Mingguan</option>
           <option value="bulanan">Bulanan</option>
-          {/* <option value="collection">Tanggal Awal - Akhir</option> */}
+          <option value="collection">Periode Collection</option>
         </select>
 
         {filterType === 'harian' && (
-          <DatePicker
-            selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
-            dateFormat="yyyy-MM-dd"
-            className="border px-2 py-1 rounded"
-          />
+          <div className='w-full'>
+						<DatePicker
+							selected={selectedDate}
+							onChange={(date) => setSelectedDate(date)}
+							dateFormat="yyyy-MM-dd"
+							className="border px-2 py-1 rounded w-full"
+						/>
+					</div>
         )}
       </div>
 
