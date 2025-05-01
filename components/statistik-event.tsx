@@ -72,7 +72,7 @@ export default function StatistikEvent({id_event, isHome}: any) {
   const itikafDay = itikafDays.find((day) => day.value === selectedDate);
   return (
     <>
-      <div className="flex items-center space-x-4 mb-7">
+      <div className="flex items-center space-x-4 mb-7 mx-auto max-w-5xl px-8 lg:px-0 mt-4">
         {eventID === 2 ? (
           // Jika event Itikaf (event_id = 2), gunakan Select
           <Select value={selectedDate} onValueChange={(value) => setSelectedDate(value)}>
