@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import DashboardSummaryItikaf from "./dashboard-itikaf";
 import Link from "next/link";
 import StatistikEvent from "./statistik-event";
+import { StatistikItikaf } from "./statistik-itikaf";
 
 interface Feature {
   id: string;
@@ -30,6 +31,9 @@ const Itikaf = () => {
             </Link>
           </div>
         </div>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <StatistikItikaf />
       </div>
     </section>
   );

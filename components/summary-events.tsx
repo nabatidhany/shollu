@@ -14,6 +14,7 @@ import { CircleCheck, CircleHelp } from "lucide-react";
 import { useState } from "react";
 import { PejuangQuran } from "./pejuang-quran";
 import { Itikaf } from "./itikaf";
+import Link from "next/link";
 
 const tooltipContent = {
   styles: "Choose from a variety of styles to suit your preferences.",
@@ -70,7 +71,7 @@ const plans = [
 ];
 
 const EventSummaries = () => {
-  const [selectedBillingPeriod, setSelectedBillingPeriod] = useState("itikaf-akbar");
+  const [selectedBillingPeriod, setSelectedBillingPeriod] = useState("sholat-champion");
 
   return (
     <div
@@ -87,14 +88,14 @@ const EventSummaries = () => {
           className="mt-8"
         >
           <TabsList className="h-11 px-1.5 rounded-full bg-primary/5">
-            <TabsTrigger value="pejuang-quran" className="py-1.5 rounded-full">
-              Pejuang Qur'an
-            </TabsTrigger>
             <TabsTrigger value="itikaf-akbar" className="py-1.5 rounded-full">
               Smart I'tikaf
             </TabsTrigger>
             <TabsTrigger value="sholat-champion" className="py-1.5 rounded-full">
               Sholat Champions
+            </TabsTrigger>
+            <TabsTrigger value="pejuang-quran" className="py-1.5 rounded-full">
+              Pejuang Qur'an
             </TabsTrigger>
           </TabsList>
         </Tabs>
@@ -113,9 +114,13 @@ const EventSummaries = () => {
         selectedBillingPeriod === "sholat-champion" && (
           <div className="mt-8">
             <h2 className="text-2xl font-bold">Sholat Champion</h2>
-            <p className="mt-4 text-lg text-center text-muted-foreground">
-              Akan Hadir Secepatnya
-            </p>
+            <div className="flex justify-center items-center mt-2">
+              <Link href="/sholat-champions">
+                <Button>
+                  Lihat Lebih Detail
+                </Button>
+              </Link>
+            </div>
           </div>
         )
       }

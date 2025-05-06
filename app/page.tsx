@@ -11,9 +11,9 @@ export default function Home() {
       <Hero />
       <Stats01Page />
       <EventSummaries />
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      {/* <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <StatistikItikaf />
-      </div>
+      </div> */}
       <FAQ />
       <Testimonials />
       <CTABanner />

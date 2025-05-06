@@ -25,7 +25,7 @@ export const NavMenu = (props: NavigationMenuProps) => (
           <Link href="#testimonials">Testimonials</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
-      <NavigationMenuItem>
+      {/* <NavigationMenuItem>
         <NavigationMenuLink asChild>
           <Link href="/pejuang-quran">Pejuang Qur'an</Link>
         </NavigationMenuLink>
@@ -34,10 +34,10 @@ export const NavMenu = (props: NavigationMenuProps) => (
         <NavigationMenuLink asChild>
           <Link href="/smart-itikaf">Smart I'tikaf</Link>
         </NavigationMenuLink>
-      </NavigationMenuItem>
+      </NavigationMenuItem> */}
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/sholat-champions">Sholat Champions</Link>
+          <Link href="/sholat-champions" className="bg-yellow-400 font-bold px-2 py-1 rounded-2xl text-[#094641] animate-pulse-border-nav">Sholat Champions</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>

@@ -139,6 +139,22 @@
 .animate-pulse-border {
   animation: pulse-border 2s infinite;
 }
+.animate-pulse-border-nav {
+  animation: pulse-border-nav 2s infinite;
+}
+
+@keyframes pulse-border-nav {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 159, 14, 0.612);
+  }
+  50% {
+    box-shadow: 0 0 10px 5px rgba(255, 174, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 191, 15, 0.703);
+  }
+}
+
 @keyframes pulse-border-top {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 236, 25, 0.4);

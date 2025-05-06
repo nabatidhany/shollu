@@ -107,128 +107,137 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 mt-20">
-      <h1 className="text-3xl font-bold mb-6">Registrasi Smart I'tikaf</h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField control={form.control} name="fullName" render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nama Lengkap</FormLabel>
-              <FormControl>
-                <Input placeholder="Masukkan nama lengkap" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
+    <div className="mx-auto">
+      <div className="container mx-auto max-w-6xl px-8 lg:px-0 mt-20 text-center py-48">
+        Mohon Maaf Event telah Selesai, Sampai Bertemu di Ramadhan Tahun Depan
 
-          <FormField control={form.control} name="whatsapp" render={({ field }) => (
-            <FormItem>
-              <FormLabel>No WhatsApp</FormLabel>
-              <FormControl>
-                <Input placeholder="Contoh: 081234567890" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
-
-          <FormField control={form.control} name="birthDate" render={({ field }) => (
-            <FormItem>
-              <FormLabel>Tanggal Lahir</FormLabel>
-              <FormControl>
-                <Input type="date" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
-
-          <FormField control={form.control} name="gender" render={({ field }) => (
-            <FormItem>
-              <FormLabel>Jenis Kelamin</FormLabel>
-              <FormControl>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Pilih jenis kelamin" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="male">Laki-laki</SelectItem>
-                    <SelectItem value="female">Perempuan</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
-
-          <FormField control={form.control} name="masjid" render={({ field }) => (
-            <FormItem>
-              <FormLabel>Pilih Masjid</FormLabel>
-              <FormControl>
-                <Select onValueChange={(value) => field.onChange(Number(value))} defaultValue={String(field.value)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Pilih masjid Anda" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {masjidList.map((masjid) => (
-                      <SelectItem key={masjid.id} value={masjid.id.toString()}>{masjid.name}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
-
-          <FormField control={form.control} name="hideName" render={({ field }) => (
-            <FormItem>
-              <FormLabel>Sembunyikan Nama</FormLabel>
-              <FormControl>
-                <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
-                  <div className="flex gap-4">
-                    <Label className="flex items-center space-x-2">
-                      <RadioGroupItem value="yes" /> <span>Ya</span>
-                    </Label>
-                    <Label className="flex items-center space-x-2">
-                      <RadioGroupItem value="no" /> <span>Tidak</span>
-                    </Label>
-                  </div>
-                </RadioGroup>
-              </FormControl>
-              <FormMessage />
-              <p className="text-sm text-gray-500 mt-1">Jika memilih "Ya", nama Anda akan disensor dalam rekapan absen.</p>
-            </FormItem>
-          )} />
-
-          {/* <Button type="submit" className="w-full">Daftar</Button> */}
-          <Button type="submit" className="w-full" disabled={loading}>{loading ? "Mendaftar..." : "Daftar"}</Button>
-        </form>
-        <Link href={'/smart-itikaf'}>
-          <Button variant="secondary" className="w-full mt-4">Kembali</Button>
-        </Link>
-      </Form>
-      {/* Modal Dialog Sukses */}
-      <Dialog open={isSuccess} onOpenChange={resetForm}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Pendaftaran Berhasil!</DialogTitle>
-          </DialogHeader>
-          <p className="text-center">Kartu anda akan terdownload otomatis dan bawa saat acara untuk menjadi tanda pengenal dalam event ini.</p>
-          <DialogFooter>
-            <Button onClick={resetForm}>OK</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-      {/* Modal Dialog Error */}
-      <Dialog open={!!errorMessage} onOpenChange={() => setErrorMessage(null)}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Pendaftaran Gagal</DialogTitle>
-          </DialogHeader>
-          <p className="text-center text-red-600">{errorMessage}</p>
-          <DialogFooter>
-            <Button onClick={() => setErrorMessage(null)}>OK</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      </div>
     </div>
-  );
+  )
+
+  // return (
+  //   <div className="max-w-lg mx-auto p-6 mt-20">
+  //     <h1 className="text-3xl font-bold mb-6">Registrasi Smart I'tikaf</h1>
+  //     <Form {...form}>
+  //       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+  //         <FormField control={form.control} name="fullName" render={({ field }) => (
+  //           <FormItem>
+  //             <FormLabel>Nama Lengkap</FormLabel>
+  //             <FormControl>
+  //               <Input placeholder="Masukkan nama lengkap" {...field} />
+  //             </FormControl>
+  //             <FormMessage />
+  //           </FormItem>
+  //         )} />
+
+  //         <FormField control={form.control} name="whatsapp" render={({ field }) => (
+  //           <FormItem>
+  //             <FormLabel>No WhatsApp</FormLabel>
+  //             <FormControl>
+  //               <Input placeholder="Contoh: 081234567890" {...field} />
+  //             </FormControl>
+  //             <FormMessage />
+  //           </FormItem>
+  //         )} />
+
+  //         <FormField control={form.control} name="birthDate" render={({ field }) => (
+  //           <FormItem>
+  //             <FormLabel>Tanggal Lahir</FormLabel>
+  //             <FormControl>
+  //               <Input type="date" {...field} />
+  //             </FormControl>
+  //             <FormMessage />
+  //           </FormItem>
+  //         )} />
+
+  //         <FormField control={form.control} name="gender" render={({ field }) => (
+  //           <FormItem>
+  //             <FormLabel>Jenis Kelamin</FormLabel>
+  //             <FormControl>
+  //             <Select onValueChange={field.onChange} defaultValue={field.value}>
+  //                 <SelectTrigger>
+  //                   <SelectValue placeholder="Pilih jenis kelamin" />
+  //                 </SelectTrigger>
+  //                 <SelectContent>
+  //                   <SelectItem value="male">Laki-laki</SelectItem>
+  //                   <SelectItem value="female">Perempuan</SelectItem>
+  //                 </SelectContent>
+  //               </Select>
+  //             </FormControl>
+  //             <FormMessage />
+  //           </FormItem>
+  //         )} />
+
+  //         <FormField control={form.control} name="masjid" render={({ field }) => (
+  //           <FormItem>
+  //             <FormLabel>Pilih Masjid</FormLabel>
+  //             <FormControl>
+  //               <Select onValueChange={(value) => field.onChange(Number(value))} defaultValue={String(field.value)}>
+  //                 <SelectTrigger>
+  //                   <SelectValue placeholder="Pilih masjid Anda" />
+  //                 </SelectTrigger>
+  //                 <SelectContent>
+  //                   {masjidList.map((masjid) => (
+  //                     <SelectItem key={masjid.id} value={masjid.id.toString()}>{masjid.name}</SelectItem>
+  //                   ))}
+  //                 </SelectContent>
+  //               </Select>
+  //             </FormControl>
+  //             <FormMessage />
+  //           </FormItem>
+  //         )} />
+
+  //         <FormField control={form.control} name="hideName" render={({ field }) => (
+  //           <FormItem>
+  //             <FormLabel>Sembunyikan Nama</FormLabel>
+  //             <FormControl>
+  //               <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
+  //                 <div className="flex gap-4">
+  //                   <Label className="flex items-center space-x-2">
+  //                     <RadioGroupItem value="yes" /> <span>Ya</span>
+  //                   </Label>
+  //                   <Label className="flex items-center space-x-2">
+  //                     <RadioGroupItem value="no" /> <span>Tidak</span>
+  //                   </Label>
+  //                 </div>
+  //               </RadioGroup>
+  //             </FormControl>
+  //             <FormMessage />
+  //             <p className="text-sm text-gray-500 mt-1">Jika memilih "Ya", nama Anda akan disensor dalam rekapan absen.</p>
+  //           </FormItem>
+  //         )} />
+
+  //         {/* <Button type="submit" className="w-full">Daftar</Button> */}
+  //         <Button type="submit" className="w-full" disabled={loading}>{loading ? "Mendaftar..." : "Daftar"}</Button>
+  //       </form>
+  //       <Link href={'/smart-itikaf'}>
+  //         <Button variant="secondary" className="w-full mt-4">Kembali</Button>
+  //       </Link>
+  //     </Form>
+  //     {/* Modal Dialog Sukses */}
+  //     <Dialog open={isSuccess} onOpenChange={resetForm}>
+  //       <DialogContent>
+  //         <DialogHeader>
+  //           <DialogTitle>Pendaftaran Berhasil!</DialogTitle>
+  //         </DialogHeader>
+  //         <p className="text-center">Kartu anda akan terdownload otomatis dan bawa saat acara untuk menjadi tanda pengenal dalam event ini.</p>
+  //         <DialogFooter>
+  //           <Button onClick={resetForm}>OK</Button>
+  //         </DialogFooter>
+  //       </DialogContent>
+  //     </Dialog>
+  //     {/* Modal Dialog Error */}
+  //     <Dialog open={!!errorMessage} onOpenChange={() => setErrorMessage(null)}>
+  //       <DialogContent>
+  //         <DialogHeader>
+  //           <DialogTitle>Pendaftaran Gagal</DialogTitle>
+  //         </DialogHeader>
+  //         <p className="text-center text-red-600">{errorMessage}</p>
+  //         <DialogFooter>
+  //           <Button onClick={() => setErrorMessage(null)}>OK</Button>
+  //         </DialogFooter>
+  //       </DialogContent>
+  //     </Dialog>
+  //   </div>
+  // );
 }
