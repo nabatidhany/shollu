@@ -33,6 +33,7 @@ export default function CollectionPage() {
   const [sholatTracked, setSholatTracked] = useState<string[]>([]);
   const [filterType, setFilterType] = useState<'harian' | 'mingguan' | 'collection'>('collection');
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [showAllMasjid, setShowAllMasjid] = useState(false);
 
   const formatDate = (d: Date) => format(d, 'yyyy-MM-dd');
 
@@ -90,11 +91,29 @@ export default function CollectionPage() {
             <p><strong>Nama Koleksi:</strong> {meta.name}</p>
             <p><strong>Masjid Peserta:</strong></p>
             <ul className='ml-2'>
-              {
-                meta?.masjid_names?.map((name: any) => (
-                  <li>- {name}</li>
-                ))
-              }
+              {meta.masjid_names.slice(0, 5).map((name: string, i: number) => (
+                <li key={i}>- {name}</li>
+              ))}
+              {meta.masjid_names.length > 5 && (
+                <>
+                  <li
+                    className="text-blue-600 cursor-pointer underline inline-block"
+                    onClick={() => setShowAllMasjid(!showAllMasjid)}
+                    title={typeof window !== 'undefined' && window.innerWidth > 768 
+                            ? meta.masjid_names.slice(5).join(', ') 
+                            : ''}
+                  >
+                    dan {meta.masjid_names.length - 5} masjid lainnya
+                  </li>
+                  {showAllMasjid && (
+                    <ul className="mt-2 ml-4 text-sm text-gray-700">
+                      {meta.masjid_names.slice(5).map((name: string, i: number) => (
+                        <li key={`more-${i}`}>- {name}</li>
+                      ))}
+                    </ul>
+                  )}
+                </>
+              )}
             </ul>
             {/* <p><strong>ID Masjid:</strong> {meta.masjid_id}</p> */}
             <p>
@@ -185,12 +204,12 @@ export default function CollectionPage() {
 
 
       <div className="overflow-x-auto">
-        <table className="table-auto border-collapse w-full border text-sm">
+        <table className="table-auto border-collapse w-full border text-[9px]">
           <thead>
             {filterType === 'collection' && (
               <>
                 <tr>
-                  <th className="border p-2 sticky left-0 z-10 bg-white whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis">Nama</th>
+                  <th className="border p-2 sticky left-0 z-10 bg-white whitespace-nowrap w-[150px] max-w-[150px] overflow-hidden text-ellipsis">Nama</th>
                   {sholatTracked.map((sholat) => (
                     <th key={`subtotal-${sholat}`} className="border p-2 capitalize">{sholat.substring(0, 3)}</th>
                   ))}
@@ -224,7 +243,7 @@ export default function CollectionPage() {
 
             {filterType === 'mingguan' && (
               <tr>
-                <th className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">Nama</th>
+                <th className="border p-2 whitespace-nowrap w-[150px] max-w-[150px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">Nama</th>
                 {sholatTracked.length > 1 ? (
                   <>
                     {sholatTracked.map((sholat) => (
@@ -246,7 +265,7 @@ export default function CollectionPage() {
 
             {filterType === 'harian' && (
               <tr>
-                <th className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">Nama</th>
+                <th className="border p-2 whitespace-nowrap w-[150px] max-w-[150px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">Nama</th>
                 {sholatTracked.length > 1 ? (
                   <>
                     {sholatTracked.map((sholat) => (
