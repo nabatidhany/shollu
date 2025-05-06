@@ -6,7 +6,7 @@ import { format, subDays, subMonths } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { id } from 'date-fns/locale';
-import { CircleX } from "lucide-react";
+import { UserCircle, Crown } from "lucide-react";
 
 type CollectionMeta = {
   name: string;
@@ -128,6 +128,61 @@ export default function CollectionPage() {
 					</div>
         )}
       </div>
+
+      {data.length > 1 && (() => {
+        // Hitung total untuk setiap user
+        const withTotal = data.map(user => {
+          const totalAll = dates.reduce((total, date) => {
+            return total + sholatTracked.reduce((sTotal, sholat) => {
+              return sTotal + (user.absen[date]?.[sholat] === 'Y' ? 1 : 0);
+            }, 0);
+          }, 0);
+          return { ...user, total: totalAll };
+        });
+
+        // Filter user yang totalnya > 0
+        const filtered = withTotal.filter(user => user.total > 0);
+
+        // Urutkan berdasarkan total tertinggi
+        const top3 = filtered.sort((a, b) => b.total - a.total).slice(0, 3);
+
+        // Buat struktur 3 slot leaderboard: [pos 3, pos 1, pos 2]
+        const slots = [top3[2] || null, top3[0] || null, top3[1] || null];
+
+        const heights = [56, 80, 64];
+        const colors = ['bg-amber-500', 'bg-yellow-400', 'bg-gray-400'];
+
+        return (
+          <div className="mb-8 bg-blue-600 p-4 rounded-md text-white animate-pulse-border-nav mt-3">
+            <h2 className="text-xl font-bold mb-4">🏆 Leaderboard</h2>
+            <div className="flex justify-center items-end gap-4">
+              {slots.map((user, i) => (
+                <div key={i} className="flex flex-col items-center">
+                  <div className="relative">
+                    <UserCircle className="w-10 h-10 text-blue-950" />
+                    {i === 1 && user && (
+                      <Crown className="w-5 h-5 text-yellow-500 absolute -top-3 -right-3" />
+                    )}
+                  </div>
+                  <div
+                    className={`w-16 ${colors[i]} rounded-t-md flex items-end justify-center text-white font-bold mt-1`}
+                    style={{ height: `${heights[i]}px` }}
+                  >
+                    #{i === 0 ? 3 : i === 1 ? 1 : 2}
+                  </div>
+                  <div className="mt-1 text-center text-sm font-medium w-20 truncate">
+                    {user?.fullname || '-'}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {user ? `Total: ${user.total}` : ''}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
 
       <div className="overflow-x-auto">
         <table className="table-auto border-collapse w-full border text-sm">
