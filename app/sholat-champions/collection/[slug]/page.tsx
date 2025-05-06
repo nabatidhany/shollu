@@ -157,7 +157,7 @@ export default function CollectionPage() {
                       {dates.map((date) =>
                         sholatTracked.map((sholat) => (
                           <th key={`${date}-${sholat}`} className="border p-2 text-center capitalize">
-                            {sholat.substring(0, 3)}
+                            {sholat.substring(0, 1)}
                           </th>
                         ))
                       )}
