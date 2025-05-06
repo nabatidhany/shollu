@@ -135,7 +135,7 @@ export default function CollectionPage() {
             {filterType === 'collection' && (
               <>
                 <tr>
-                  <th className="border p-2">Nama</th>
+                  <th className="border p-2 sticky left-0 z-10 bg-white whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis">Nama</th>
                   {sholatTracked.map((sholat) => (
                     <th key={`subtotal-${sholat}`} className="border p-2 capitalize">{sholat.substring(0, 3)}</th>
                   ))}
@@ -169,7 +169,7 @@ export default function CollectionPage() {
 
             {filterType === 'mingguan' && (
               <tr>
-                <th className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis">Nama</th>
+                <th className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">Nama</th>
                 {sholatTracked.length > 1 ? (
                   <>
                     {sholatTracked.map((sholat) => (
@@ -191,7 +191,7 @@ export default function CollectionPage() {
 
             {filterType === 'harian' && (
               <tr>
-                <th className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis">Nama</th>
+                <th className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">Nama</th>
                 {sholatTracked.length > 1 ? (
                   <>
                     {sholatTracked.map((sholat) => (
@@ -227,7 +227,7 @@ export default function CollectionPage() {
 
                 return (
                   <tr key={idx}>
-                    <td className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis">{row.fullname}</td>
+                    <td className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">{row.fullname}</td>
                     {sholatTracked.map((sholat) => (
                       <td key={`subtotal-val-${sholat}`} className="border p-2 text-center capitalize">{subtotals[sholat]}</td>
                     ))}
@@ -261,7 +261,7 @@ export default function CollectionPage() {
 
                   return (
                     <tr key={idx}>
-                      <td className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis">{row.fullname}</td>
+                      <td className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">{row.fullname}</td>
                       {sholatTracked.map((sholat) => (
                         <td key={`subtotal-${sholat}`} className="border p-2 text-center capitalize">{subtotals[sholat]}</td>
                       ))}
@@ -299,7 +299,7 @@ export default function CollectionPage() {
               if (filterType === 'harian') {
                 return (
                   <tr key={idx}>
-                    <td className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis">{row.fullname}</td>
+                    <td className="border p-2 whitespace-nowrap w-[200px] max-w-[200px] overflow-hidden text-ellipsis sticky left-0 bg-white z-10">{row.fullname}</td>
                     {sholatTracked.length > 1 ? (
                       sholatTracked.map((sholat) => {
                         const status = row.absen?.[dates[0]]?.[sholat] || 'N';
