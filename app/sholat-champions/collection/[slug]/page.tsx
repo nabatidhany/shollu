@@ -13,6 +13,7 @@ type CollectionMeta = {
   date_start: string;
   date_end: string;
   masjid_id: string;
+  masjid_names: any;
 };
 
 type AbsenResponse = {
@@ -87,7 +88,15 @@ export default function CollectionPage() {
       {meta && (
             <div className="mb-4 border p-4 rounded bg-gray-50">
             <p><strong>Nama Koleksi:</strong> {meta.name}</p>
-            <p><strong>ID Masjid:</strong> {meta.masjid_id}</p>
+            <p><strong>Masjid Peserta:</strong></p>
+            <ul>
+              {
+                meta?.masjid_names?.map((name: any) => (
+                  <li>- {name}</li>
+                ))
+              }
+            </ul>
+            {/* <p><strong>ID Masjid:</strong> {meta.masjid_id}</p> */}
             <p>
 							<strong>Periode:</strong>{' '}
 							{format(new Date(meta.date_start), 'dd MMMM yyyy', { locale: id })} s/d{' '}
