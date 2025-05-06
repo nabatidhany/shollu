@@ -89,7 +89,7 @@ export default function CollectionPage() {
             <div className="mb-4 border p-4 rounded bg-gray-50">
             <p><strong>Nama Koleksi:</strong> {meta.name}</p>
             <p><strong>Masjid Peserta:</strong></p>
-            <ul>
+            <ul className='ml-2'>
               {
                 meta?.masjid_names?.map((name: any) => (
                   <li>- {name}</li>
