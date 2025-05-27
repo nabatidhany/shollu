@@ -3,16 +3,25 @@
 import React, { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { format } from 'date-fns'
+import { format, isValid, parseISO } from 'date-fns'
 import { id } from 'date-fns/locale'
 import { useRouter } from 'next/navigation'
+
+interface Summaries {
+  subuh?: number
+  dzuhur?: number
+  ashar?: number
+  maghrib?: number
+  isya?: number
+}
 
 interface Collection {
   id: number
   name: string
   slug: string
-  date_start: string
-  date_end: string
+  start_date: string
+  end_date: string
+  summaries?: Summaries
 }
 
 export default function CollectionList() {
@@ -57,18 +66,46 @@ export default function CollectionList() {
         {loading ? (
           <p>Memuat data koleksi...</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-6 cursor-pointer hover:scale-105 transition-transform duration-200">
-            {collections.map((collection) => (
-              <Card key={collection.id} onClick={() => router.push(`/sholat-champions/collection/${collection.slug}`)}>
-                <CardHeader>
-                  <CardTitle>{collection.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
-                  {format(new Date(collection.date_start), 'd MMMM yyyy', { locale: id })} -{' '}
-                  {format(new Date(collection.date_end), 'd MMMM yyyy', { locale: id })}
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
+            {collections.map((collection) => {
+              const start = parseISO(collection.start_date)
+              const end = parseISO(collection.end_date)
+
+              const startDateStr = isValid(start)
+                ? format(start, 'd MMMM yyyy', { locale: id })
+                : 'Tanggal mulai tidak valid'
+              const endDateStr = isValid(end)
+                ? format(end, 'd MMMM yyyy', { locale: id })
+                : 'Tanggal selesai tidak valid'
+
+              return (
+                <div
+                  key={collection.id}
+                  className="transition-transform duration-200 hover:scale-105 cursor-pointer"
+                  onClick={() => router.push(`/sholat-champions/collection/${collection.slug}`)}
+                >
+                  <Card className="h-full">
+                    <CardHeader>
+                      <CardTitle>{collection.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="text-sm text-muted-foreground space-y-1">
+                      <p>
+                        {startDateStr} - {endDateStr}
+                      </p>
+                      {collection.summaries && (
+                        <div className="text-xs mt-2 text-gray-600 flex items-center gap-2">
+                          {Object.entries(collection.summaries).map(([sholat, count]) => (
+                            <p key={sholat}>
+                              🕋 {sholat.charAt(0).toUpperCase() + sholat.slice(1)}: {count}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </div>
+              )
+            })}
             {collections.length === 0 && (
               <p className="col-span-full text-muted-foreground">Tidak ada koleksi ditemukan.</p>
             )}

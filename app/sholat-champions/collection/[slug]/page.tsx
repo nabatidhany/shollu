@@ -376,6 +376,58 @@ export default function CollectionPage() {
               return null;
             })}
           </tbody>
+          <tfoot>
+            {data.length > 0 && (
+              <>
+                {(filterType === 'collection' || filterType === 'mingguan') && (
+                  <tr className="font-bold bg-gray-100">
+                    <td className="border p-2 sticky left-0 bg-gray-100 z-10">TOTAL</td>
+                    {sholatTracked.map((sholat) => {
+                      const totalSholat = data.reduce((sum, row) => {
+                        return sum + dates.reduce((acc, date) => acc + (row.absen[date]?.[sholat] === 'Y' ? 1 : 0), 0);
+                      }, 0);
+                      return (
+                        <td key={`footer-${sholat}`} className="border p-2 text-center">{totalSholat}</td>
+                      );
+                    })}
+                    <td className="border p-2 text-center">
+                      {
+                        data.reduce((total, row) =>
+                          total + dates.reduce((dSum, date) =>
+                            dSum + sholatTracked.reduce((sSum, sholat) =>
+                              sSum + (row.absen[date]?.[sholat] === 'Y' ? 1 : 0), 0), 0), 0)
+                      }
+                    </td>
+                    {filterType === 'collection' && dates.map((date) =>
+                      sholatTracked.map((sholat) => {
+                        const count = data.reduce((sum, row) => sum + (row.absen[date]?.[sholat] === 'Y' ? 1 : 0), 0);
+                        return (
+                          <td key={`footer-${date}-${sholat}`} className="border p-2 text-center text-xs">{count}</td>
+                        );
+                      })
+                    )}
+                  </tr>
+                )}
+
+                {filterType === 'harian' && (
+                  <tr className="font-bold bg-gray-100">
+                    <td className="border p-2 sticky left-0 bg-gray-100 z-10">TOTAL</td>
+                    {sholatTracked.map((sholat) => {
+                      const total = data.reduce((sum, row) => {
+                        const today = formatDate(selectedDate || new Date());
+                        return sum + (row.absen?.[today]?.[sholat] === 'Y' ? 1 : 0);
+                      }, 0);
+                      return (
+                        <td key={`footer-${sholat}`} className="border p-2 text-center">{total}</td>
+                      );
+                    })}
+                  </tr>
+                )}
+              </>
+            )}
+          </tfoot>
+
+
         </table>
       </div>
 

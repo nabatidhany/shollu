@@ -15,6 +15,7 @@ import { useState } from "react";
 import { PejuangQuran } from "./pejuang-quran";
 import { Itikaf } from "./itikaf";
 import Link from "next/link";
+import CollectionList from "./collection-list";
 
 const tooltipContent = {
   styles: "Choose from a variety of styles to suit your preferences.",
@@ -112,9 +113,10 @@ const EventSummaries = () => {
       }
       {
         selectedBillingPeriod === "sholat-champion" && (
-          <div className="mt-8">
-            <h2 className="text-2xl font-bold">Sholat Champion</h2>
-            <div className="flex justify-center items-center mt-2">
+          <div className="mt-0 w-full lg:max-w-3xl">
+            {/* <h2 className="text-2xl font-bold">Sholat Champion</h2> */}
+            <CollectionList />
+            <div className="flex justify-center items-center mt-5">
               <Link href="/sholat-champions">
                 <Button>
                   Lihat Lebih Detail
