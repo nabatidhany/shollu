@@ -78,14 +78,14 @@ export default function HomeSholatChampions() {
           </div>
         </div>
       </section>
+      <div className='px-5'>
+        <StatistikEvent id_event={3} />
+      </div>
       <section className='bg-blue-100 py-32 mt-8'>
         <div className="container mx-auto max-w-6xl px-8 lg:px-0 mt-8">
           <CollectionList />
         </div>
       </section>
-      <div className='px-5'>
-        <StatistikEvent id_event={3} />
-      </div>
       {/* <section>
         <div id='rekapan' className='container mx-auto max-w-6xl px-8 lg:px-0'>
           <MasjidList event_id={3} />

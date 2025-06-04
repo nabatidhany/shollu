@@ -16,6 +16,7 @@ import { PejuangQuran } from "./pejuang-quran";
 import { Itikaf } from "./itikaf";
 import Link from "next/link";
 import CollectionList from "./collection-list";
+import StatistikEvent from "./statistik-event";
 
 const tooltipContent = {
   styles: "Choose from a variety of styles to suit your preferences.",
@@ -115,7 +116,10 @@ const EventSummaries = () => {
         selectedBillingPeriod === "sholat-champion" && (
           <div className="mt-0 w-full lg:max-w-3xl">
             {/* <h2 className="text-2xl font-bold">Sholat Champion</h2> */}
-            <CollectionList />
+            {/* <CollectionList /> */}
+            <div className='px-5'>
+              <StatistikEvent id_event={3} />
+            </div>
             <div className="flex justify-center items-center mt-5">
               <Link href="/sholat-champions">
                 <Button>
