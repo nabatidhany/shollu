@@ -10,6 +10,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { Input } from "./ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import MasjidListSC from "./masjid-list-sc";
 
 const formatDate = (dateStr: string) => {
   const date = new Date(dateStr);
@@ -131,14 +132,13 @@ export default function StatistikEvent({id_event, isHome}: any) {
         )
       }
       <section>
-        <div id='rekapan' className='container mx-auto max-w-6xl px-1 lg:px-0'>
-          {
-            !isHome && (
-              <MasjidListNew data={eventStats?.masjid_stats || []} />
-            )
-          }
-          {/* <MasjidList event_id={id_event} /> */}
-          <hr className='my-8 border-t border-muted-2' />
+        <div id="rekapan" className="container mx-auto max-w-6xl px-1 lg:px-0">
+          {!isHome && (
+            eventID === 3
+              ? <MasjidListSC />
+              : <MasjidListNew data={eventStats?.masjid_stats || []} />
+          )}
+          <hr className="my-8 border-t border-muted-2" />
           <DashboardSummaryItikaf data={eventStats} loading={loading} />
         </div>
       </section>
