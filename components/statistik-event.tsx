@@ -135,11 +135,11 @@ export default function StatistikEvent({id_event, isHome}: any) {
         <div id="rekapan" className="container mx-auto max-w-6xl px-1 lg:px-0">
           {!isHome && (
             eventID === 3
-              ? <MasjidListSC />
+              ? <MasjidListSC today={selectedDate} />
               : <MasjidListNew data={eventStats?.masjid_stats || []} />
           )}
           <hr className="my-8 border-t border-muted-2" />
-          <DashboardSummaryItikaf data={eventStats} loading={loading} />
+          {/* <DashboardSummaryItikaf data={eventStats} loading={loading} /> */}
         </div>
       </section>
     </>

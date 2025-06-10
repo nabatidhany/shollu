@@ -51,8 +51,8 @@ export default function HomeSholatChampions() {
         <div className="mx-auto">
           <div className="bg-muted-2 grid items-center gap-8 lg:grid-cols-2">
             {/* Konten Teks */}
-            <div className="flex flex-col items-center p-16 pt-20 text-center lg:items-start lg:text-left">
-              <p>Event Ramadhan 2025</p>
+            <div className="flex flex-col items-center p-16 pt-10 text-center lg:items-start lg:text-left">
+              {/* <p>Event 2025</p> */}
               <h1 className="my-6 text-4xl font-bold text-pretty lg:text-6xl">
                 Sholat Champions
               </h1>
@@ -60,10 +60,10 @@ export default function HomeSholatChampions() {
                 Program Kompetisi dan Monitoring Sholat bagi anak-anak dan remaja untuk membiasakan Sholat berjamaah di Masjid. Menggunakan sistem QR Code atau Fingerprint.
               </p>
               <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
-                <Button>
+                {/* <Button>
                   Daftar Sekarang
                   <ArrowRight className="size-4" />
-                </Button>
+                </Button> */}
                 <Link href="#rekapan">
                   <Button variant="ghost">Lihat Rekapan</Button>
                 </Link>

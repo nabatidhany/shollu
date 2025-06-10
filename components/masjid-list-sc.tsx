@@ -6,16 +6,17 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
+import LeaderboardMasjid from "./masjid-leaderboard";
 
-export default function MasjidListSC() {
+export default function MasjidListSC({today}: any) {
   const [search, setSearch] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("Semua");
   const [masjidData, setMasjidData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const today = new Date().toISOString().split("T")[0]; // format YYYY-MM-DD
-    fetch(`https://api.shollu.com/api/statistics-rekap-masjid?date=${today}`)
+    // const today = new Date().toISOString().split("T")[0]; // format YYYY-MM-DD
+    fetch(`https://api.shollu.com/api/statistics-rekap-masjid?event_date=${today}`)
       .then((res) => res.json())
       .then((data) => {
         setMasjidData(data);
@@ -25,7 +26,7 @@ export default function MasjidListSC() {
         console.error("Gagal fetch masjid data", err);
         setLoading(false);
       });
-  }, []);
+  }, [today]);
 
   const regions: string[] = ["Semua", ...new Set(masjidData.map((masjid) => masjid.masjid_regional))];
 
@@ -39,8 +40,11 @@ export default function MasjidListSC() {
 
   return (
     <section className="py-0">
+      <div className="mb-4">
+        <LeaderboardMasjid date={today} />
+      </div>
       <div className="container px-0 md:px-8">
-        <h1 className="mb-6 text-3xl font-semibold">Daftar Masjid Terhubung</h1>
+        <h1 className="mb-6 text-2xl font-semibold">Kehadiran per-Masjid {today}</h1>
         <div className="relative mb-6">
           <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
           <Input
@@ -81,7 +85,7 @@ export default function MasjidListSC() {
                     <h3 className="font-semibold">{masjid.masjid_nama}</h3>
                     <p className="text-sm text-muted-foreground">{masjid.masjid_alamat}</p>
                     <p className="text-sm text-green-600 font-bold">
-                      Jumlah Kehadiran Hari ini: {masjid.total_count}
+                      Jumlah Kehadiran: {masjid.total_count}
                     </p>
                     <div className="text-xs text-muted-foreground flex flex-wrap gap-2 mt-1">
                       <span>Subuh: {masjid.subuh_count}</span>
