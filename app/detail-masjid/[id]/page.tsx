@@ -9,6 +9,7 @@ import { format, parseISO } from "date-fns";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { CircleCheck, CircleX } from "lucide-react";
 import {
   Tooltip,
   TooltipProvider,
@@ -104,12 +105,15 @@ export default function MasjidDetail() {
     rekapanAbsen.forEach((record, index) => {
       const sholatData = record.sholat || {};
 
-      const renderIcon = (doc: jsPDF, sholat: string): { text: string; color: string } => {
+      const renderIcon = (doc: jsPDF, sholat: string): any => {
         const s = sholatData[sholat];
-        if (!s || s.status === false) return { text: "N", color: "#FF0000" }; // merah
-        if (s.inThisMasjid === false) return { text: "Y", color: "#A9A9A9" }; // abu-abu
+        if (!s || s.status === false) return <CircleX color="red" size={23} />; // merah
+        if (s.inThisMasjid === false) return <CircleCheck color="red" size={23} />; // abu-abu
+        // if (!s || s.status === false) return { text: "N", color: "#FF0000" }; // merah
+        // if (s.inThisMasjid === false) return { text: "Y", color: "#A9A9A9" }; // abu-abu
         totalKehadiranSah += 1;
-        return { text: "Y", color: "#008000" }; // hijau
+        return <CircleCheck color="green" size={23} />; // hijau
+        // return { text: "Y", color: "#008000" }; // hijau
       };
 
       const row = [
@@ -207,11 +211,11 @@ export default function MasjidDetail() {
               <TableRow>
                 <TableHead className="bg-gray-200 text-center text-black">#</TableHead>
                 <TableHead className="bg-gray-200 text-black">Nama</TableHead>
-                <TableHead className="bg-gray-200 text-black text-center">Subuh</TableHead>
-                <TableHead className="bg-gray-200 text-black text-center">Dzuhur</TableHead>
-                <TableHead className="bg-gray-200 text-black text-center">Ashar</TableHead>
-                <TableHead className="bg-gray-200 text-black text-center">Maghrib</TableHead>
-                <TableHead className="bg-gray-200 text-black text-center">Isya</TableHead>
+                <TableHead className="bg-gray-200 text-black text-center">S</TableHead>
+                <TableHead className="bg-gray-200 text-black text-center">D</TableHead>
+                <TableHead className="bg-gray-200 text-black text-center">A</TableHead>
+                <TableHead className="bg-gray-200 text-black text-center">M</TableHead>
+                <TableHead className="bg-gray-200 text-black text-center">I</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -243,11 +247,13 @@ export default function MasjidDetail() {
                                     {!sholatRecord ? (
                                       <span className="text-gray-400 text-lg">-</span>
                                     ) : sholatRecord.status === false ? (
-                                      <span className="text-red-500 text-lg">❌</span>
+                                      <span className="text-red-500 text-lg"><CircleX color="red" size={23} /></span>
                                     ) : !sholatRecord.inThisMasjid ? (
-                                      <span className="text-gray-500 text-lg">✔️</span>
+                                      // <span className="text-gray-500 text-lg">✔️</span>
+                                      <CircleCheck color="red" size={23} />
                                     ) : (
-                                      <span className="text-green-600 text-lg">✔️</span>
+                                      // <span className="text-green-600 text-lg">✔️</span>
+                                      <CircleCheck color="green" size={23} />
                                     )}
                                   </span>
                                 </TooltipTrigger>
