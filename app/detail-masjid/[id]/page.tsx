@@ -105,15 +105,12 @@ export default function MasjidDetail() {
     rekapanAbsen.forEach((record, index) => {
       const sholatData = record.sholat || {};
 
-      const renderIcon = (doc: jsPDF, sholat: string): any => {
+      const renderIcon = (doc: jsPDF, sholat: string): { text: string; color: string } => {
         const s = sholatData[sholat];
-        if (!s || s.status === false) return <CircleX color="red" size={23} />; // merah
-        if (s.inThisMasjid === false) return <CircleCheck color="red" size={23} />; // abu-abu
-        // if (!s || s.status === false) return { text: "N", color: "#FF0000" }; // merah
-        // if (s.inThisMasjid === false) return { text: "Y", color: "#A9A9A9" }; // abu-abu
+        if (!s || s.status === false) return { text: "N", color: "#FF0000" }; // merah
+        if (s.inThisMasjid === false) return { text: "Y", color: "#A9A9A9" }; // abu-abu
         totalKehadiranSah += 1;
-        return <CircleCheck color="green" size={23} />; // hijau
-        // return { text: "Y", color: "#008000" }; // hijau
+        return { text: "Y", color: "#008000" }; // hijau
       };
 
       const row = [
