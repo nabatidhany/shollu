@@ -17,11 +17,22 @@ const formatDate = (dateStr: string) => {
   return date.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
 };
 
+const getTodayInJakarta = () => {
+  const jakartaDate = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Jakarta',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date());
+  return jakartaDate; // Format: YYYY-MM-DD
+};
+
 export default function StatistikEvent({id_event, isHome}: any) {
   const [eventStats, setEventStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const eventID = id_event; // Bisa diganti sesuai kebutuhan
-  const today = new Date().toISOString().split("T")[0];
+  // const today = new Date().toISOString().split("T")[0];
+  const today = getTodayInJakarta();
   // Jika event_id = 2, gunakan Hari 1 - Hari 10 I'tikaf
   const itikafStartDate = new Date("2025-03-20"); // Hari 1 I'tikaf
   const itikafDays = Array.from({ length: 10 }, (_, i) => {
