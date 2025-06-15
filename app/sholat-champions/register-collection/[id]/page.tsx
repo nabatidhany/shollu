@@ -34,7 +34,7 @@ export default function EventDetail() {
 
     try {
       await axios.post('https://api.shollu.com/api/v1/collections/add-peserta', {
-        collection_id: Number(id),
+        collection_id: Number(meta.id),
         peserta_ids: qrValue,
       });
 
