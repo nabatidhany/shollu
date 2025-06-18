@@ -91,7 +91,7 @@ export default function DashboardSummarySC({ date }: any) {
   );
 
   return (
-    <div className="p-4 space-y-6">
+    <div className="pt-4 space-y-6">
       <h2 className="mb-3 text-xl text-center font-semibold md:mb-4 md:text-4xl lg:mb-6">
         Statistik Absensi Hari Ini
       </h2>

@@ -117,7 +117,7 @@ const EventSummaries = () => {
           <div className="mt-0 w-full lg:max-w-3xl">
             {/* <h2 className="text-2xl font-bold">Sholat Champion</h2> */}
             {/* <CollectionList /> */}
-            <div className='px-5'>
+            <div className='px-0'>
               <StatistikEvent id_event={3} />
             </div>
             <div className="flex justify-center items-center mt-5">
