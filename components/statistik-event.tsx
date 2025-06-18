@@ -11,6 +11,7 @@ import { format } from "date-fns";
 import { Input } from "./ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import MasjidListSC from "./masjid-list-sc";
+import DashboardSummarySC from "./dashboard-sc";
 
 const formatDate = (dateStr: string) => {
   const date = new Date(dateStr);
@@ -150,7 +151,7 @@ export default function StatistikEvent({id_event, isHome}: any) {
               : <MasjidListNew data={eventStats?.masjid_stats || []} />
           )}
           <hr className="my-8 border-t border-muted-2" />
-          {/* <DashboardSummaryItikaf data={eventStats} loading={loading} /> */}
+          <DashboardSummarySC date={selectedDate}  />
         </div>
       </section>
     </>
