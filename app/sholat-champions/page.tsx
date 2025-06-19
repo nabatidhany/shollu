@@ -9,6 +9,7 @@ import { Metadata } from 'next'
 import FloatingShare from '@/components/FloatingShare'
 import StatistikEvent from '@/components/statistik-event'
 import CollectionList from '@/components/collection-list'
+import Dashboard from '../new-sholat-champions/page'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -78,11 +79,12 @@ export default function HomeSholatChampions() {
           </div>
         </div>
       </section>
-      <div className='px-5'>
+      {/* <div className='px-5'>
         <StatistikEvent id_event={3} />
-      </div>
+      </div> */}
+      <Dashboard />
       <section className='bg-blue-100 py-32 mt-8'>
-        <div className="container mx-auto max-w-6xl px-8 lg:px-0 mt-8">
+        <div className="container mx-auto max-w-6xl px-2 lg:px-0 mt-8">
           <CollectionList />
         </div>
       </section>
