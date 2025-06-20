@@ -151,6 +151,32 @@ function AccordionItem({ m, index }) {
               </LineChart>
             </ResponsiveContainer>
           </div>
+          {/* Table Kehadiran Sholat */}
+          <div className="overflow-auto">
+            <table className="w-full text-xs border mt-2">
+              <thead className="bg-gray-200 text-gray-700">
+                <tr>
+                  <th className="border px-2 py-1 text-left">Sholat</th>
+                  <th className="border px-2 py-1 text-right">Jumlah Hadir</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sholatData.map((s) => (
+                  <tr key={s.name}>
+                    <td className="border px-2 py-1">{s.name}</td>
+                    <td className="border px-2 py-1 text-right">{s.count}</td>
+                  </tr>
+                ))}
+                <tr className="font-bold bg-gray-100">
+                  <td className="border px-2 py-1">Total</td>
+                  <td className="border px-2 py-1 text-right">
+                    {sholatData.reduce((acc, s) => acc + s.count, 0)}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
 					<Link
 						href={`/detail-masjid/${m.masjid_id}`}
 						className="order-3 ml-auto w-fit gap-2 md:order-none flex flex-row items-center"
