@@ -16,6 +16,8 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
+import { isMobile } from 'react-device-detect';
+
 
 
 const eventsGlobal = [
@@ -239,21 +241,45 @@ export default function MasjidDetail() {
                           <TableCell key={sholat} className="text-center">
                             <TooltipProvider>
                               <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <span>
+                                {isMobile ? (
+                                  <span onClick={() => alert(
+                                    !sholatRecord
+                                      ? "Tidak absen"
+                                      : sholatRecord.status === false
+                                      ? "Tidak Sah / Terlambat"
+                                      : !sholatRecord.inThisMasjid
+                                      ? `Sholat di masjid ${sholatRecord.masjidName}`
+                                      : "Sah - Absen di masjid ini"
+                                  )}>
                                     {!sholatRecord ? (
                                       <span className="text-gray-400 text-lg">-</span>
                                     ) : sholatRecord.status === false ? (
                                       <span className="text-red-500 text-lg"><CircleX color="red" size={23} /></span>
                                     ) : !sholatRecord.inThisMasjid ? (
                                       // <span className="text-gray-500 text-lg">✔️</span>
-                                      <CircleCheck color="red" size={23} />
+                                      <CircleCheck color="#A9A9A9" size={23} />
                                     ) : (
                                       // <span className="text-green-600 text-lg">✔️</span>
                                       <CircleCheck color="green" size={23} />
                                     )}
                                   </span>
-                                </TooltipTrigger>
+                                ) : (
+                                  <TooltipTrigger asChild>
+                                    <span>
+                                      {!sholatRecord ? (
+                                        <span className="text-gray-400 text-lg">-</span>
+                                      ) : sholatRecord.status === false ? (
+                                        <span className="text-red-500 text-lg"><CircleX color="red" size={23} /></span>
+                                      ) : !sholatRecord.inThisMasjid ? (
+                                        // <span className="text-gray-500 text-lg">✔️</span>
+                                        <CircleCheck color="#A9A9A9" size={23} />
+                                      ) : (
+                                        // <span className="text-green-600 text-lg">✔️</span>
+                                        <CircleCheck color="green" size={23} />
+                                      )}
+                                    </span>
+                                  </TooltipTrigger>
+                                )}
                                 <TooltipContent>
                                   <p>
                                     {!sholatRecord
@@ -261,7 +287,7 @@ export default function MasjidDetail() {
                                       : sholatRecord.status === false
                                       ? "Tidak Sah / Terlambat"
                                       : !sholatRecord.inThisMasjid
-                                      ? "Absen di masjid lain"
+                                      ? `Sholat di masjid ${sholatRecord.masjidName}`
                                       : "Sah - Absen di masjid ini"}
                                   </p>
                                 </TooltipContent>
