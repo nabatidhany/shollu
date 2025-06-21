@@ -14,6 +14,7 @@ import {
   TooltipContent,
 } from "@/components/ui/tooltip";
 import EventView from "./collection";
+import { isMobile } from 'react-device-detect';
 
 const sholatTimes: any = {
   subuh: { jam: "04:50:00", min: "04:20:00", max: "05:20:00" },
@@ -185,23 +186,50 @@ export default function MasjidDetail() {
                         </TableCell>
                         {["subuh", "dzuhur", "ashar", "maghrib", "isya"].map((sholat) => {
                           const s = record.sholat?.[sholat];
+                          const sholatRecord = record.sholat?.[sholat];
                           return (
                             <TableCell key={sholat} className="text-center">
                               <TooltipProvider>
                                 <Tooltip>
-                                  <TooltipTrigger asChild>
-                                    <span>
-                                      {!s ? (
-                                        <span className="text-gray-400">-</span>
-                                      ) : s.status === false ? (
-                                        <CircleX color="red" size={20} />
-                                      ) : !s.inThisMasjid ? (
-                                        <CircleCheck color="#A9A9A9" size={20} />
+                                  {isMobile ? (
+                                    <span onClick={() => alert(
+                                      !sholatRecord
+                                        ? "Tidak absen"
+                                        : sholatRecord.status === false
+                                        ? "Tidak Sah / Terlambat"
+                                        : !sholatRecord.inThisMasjid
+                                        ? `Sholat di masjid ${sholatRecord.masjidName}`
+                                        : "Sah - Absen di masjid ini"
+                                    )}>
+                                      {!sholatRecord ? (
+                                        <span className="text-gray-400 text-lg">-</span>
+                                      ) : sholatRecord.status === false ? (
+                                        <span className="text-red-500 text-lg"><CircleX color="red" size={23} /></span>
+                                      ) : !sholatRecord.inThisMasjid ? (
+                                        // <span className="text-gray-500 text-lg">✔️</span>
+                                        <CircleCheck color="#A9A9A9" size={23} />
                                       ) : (
-                                        <CircleCheck color="green" size={20} />
+                                        // <span className="text-green-600 text-lg">✔️</span>
+                                        <CircleCheck color="green" size={23} />
                                       )}
                                     </span>
-                                  </TooltipTrigger>
+                                  ) : (
+                                    <TooltipTrigger asChild>
+                                      <span>
+                                        {!sholatRecord ? (
+                                          <span className="text-gray-400 text-lg">-</span>
+                                        ) : sholatRecord.status === false ? (
+                                          <span className="text-red-500 text-lg"><CircleX color="red" size={23} /></span>
+                                        ) : !sholatRecord.inThisMasjid ? (
+                                          // <span className="text-gray-500 text-lg">✔️</span>
+                                          <CircleCheck color="#A9A9A9" size={23} />
+                                        ) : (
+                                          // <span className="text-green-600 text-lg">✔️</span>
+                                          <CircleCheck color="green" size={23} />
+                                        )}
+                                      </span>
+                                    </TooltipTrigger>
+                                  )}
                                   <TooltipContent>
                                     <p>
                                       {!s
