@@ -226,13 +226,13 @@ export default function EventView({ masjidId }: { masjidId: string | number }) {
                     return (
                       <tr key={idx}>
                         <td className="border p-2 sticky left-0 bg-white">{row.fullname}</td>
-                        <td className="border p-2 text-center">{subtotal.subuh}</td>
-                        <td className="border p-2 text-center">{subtotal.dzuhur}</td>
-                        <td className="border p-2 text-center">{subtotal.ashar}</td>
-                        <td className="border p-2 text-center">{subtotal.maghrib}</td>
-                        <td className="border p-2 text-center">{subtotal.isya}</td>
-                        <td className="border p-2 text-center">{total}</td>
-                        <td className="border p-2 text-center">{row._point}</td>
+                        <td className="border p-2 text-center">{row.subuh_count}</td>
+												<td className="border p-2 text-center">{row.dzuhur_count}</td>
+												<td className="border p-2 text-center">{row.ashar_count}</td>
+												<td className="border p-2 text-center">{row.maghrib_count}</td>
+												<td className="border p-2 text-center">{row.isya_count}</td>
+												<td className="border p-2 text-center">{row.total_count}</td>
+												<td className="border p-2 text-center">{row.point_count}</td>
 
                         {dates.map(date => (
                           <>
