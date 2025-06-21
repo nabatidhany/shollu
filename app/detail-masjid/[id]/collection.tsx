@@ -117,25 +117,28 @@ export default function EventView({ masjidId }: { masjidId: string | number }) {
       </div>
 
       {collections?.length > 0 ? (
-        <select
-          className="w-full border rounded p-2 mb-4 text-sm"
-          value={selectedCollection || ""}
-          onChange={(e) => {
-            const val = e.target.value;
-            setSelectedCollection(val);
-            setFilterType("collection");
-            fetch(`https://api.shollu.com/api/v1/collections-get-meta/${val}`)
-              .then(res => res.json())
-              .then(data => setCollectionMeta(data.collections || null));
-          }}
-        >
-          <option value="">Pilih Koleksi</option>
-          {collections.map((col) => (
-            <option key={col.slug} value={col.slug}>{col.name}</option>
-          ))}
-        </select>
+				<>
+					<p className="text-sm text-gray-500 mb-2">Pilih Event untuk kategori {categories.find(cat => cat.id === selectedCategory)?.name} dari masjid ini</p>
+					<select
+						className="w-full border rounded p-2 mb-4 text-sm"
+						value={selectedCollection || ""}
+						onChange={(e) => {
+							const val = e.target.value;
+							setSelectedCollection(val);
+							setFilterType("collection");
+							fetch(`https://api.shollu.com/api/v1/collections-get-meta/${val}`)
+								.then(res => res.json())
+								.then(data => setCollectionMeta(data.collections || null));
+						}}
+					>
+						<option value="">Pilih Event</option>
+						{collections.map((col) => (
+							<option key={col.slug} value={col.slug}>{col.name}</option>
+						))}
+					</select>
+				</>
       ) : (
-				<p className="text-center text-gray-500">Belum ada koleksi untuk kategori ini</p>)}
+				<p className="text-center text-gray-500">Belum ada data</p>)}
 
       {collectionMeta && (
         <>
