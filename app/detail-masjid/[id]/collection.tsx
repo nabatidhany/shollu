@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { format, subDays } from "date-fns";
+import { CircleCheck, CircleX } from "lucide-react";
 
 export default function EventView({ masjidId }: { masjidId: string | number }) {
   const [categories, setCategories] = useState<any[]>([]);
@@ -142,27 +143,27 @@ export default function EventView({ masjidId }: { masjidId: string | number }) {
           <p><strong>Nama Koleksi:</strong> {collectionMeta.name}</p>
 					<p><strong>Periode:</strong> {format(new Date(collectionMeta.date_start), 'dd MMM yyyy')} - {format(new Date(collectionMeta.date_end), 'dd MMM yyyy')}</p>
 					<hr className="mb-4 mt-2" />
+					<div className="flex gap-2 mb-2">
+						<button
+							className={`border p-1 px-2 rounded-xl text-xs ${sortType === "point" ? "bg-yellow-600 text-white" : ""}`}
+							onClick={() => setSortType("point")}
+						>
+							Urut Point Terbanyak
+						</button>
+						<button
+							className={`border p-1 px-2 rounded-xl text-xs ${sortType === "abjad" ? "bg-yellow-600 text-white" : ""}`}
+							onClick={() => setSortType("abjad")}
+						>
+							Urut Abjad
+						</button>
+					</div>
+					<p className="italic text-xs mb-2">*note: Total Point dijumlahkan dari : Subuh = 1, Magrib = 1, Isya = 1</p>
           {loading ? (
 						<p className="text-center text-gray-500">Loading data...</p>
           ) : collectionData.length === 0 ? (
 						<p className="text-center text-gray-500">Tidak ada data absensi</p>
           ) : (
 						<div className="overflow-x-auto">
-							<div className="flex gap-2 mb-2">
-								<button
-									className={`border p-1 px-2 rounded-xl text-xs ${sortType === "point" ? "bg-yellow-600 text-white" : ""}`}
-									onClick={() => setSortType("point")}
-								>
-									Urut Point Terbanyak
-								</button>
-								<button
-									className={`border p-1 px-2 rounded-xl text-xs ${sortType === "abjad" ? "bg-yellow-600 text-white" : ""}`}
-									onClick={() => setSortType("abjad")}
-								>
-									Urut Abjad
-								</button>
-							</div>
-							<p className="italic text-xs mb-2">*note: Total Point dijumlahkan dari : Subuh = 1, Magrib = 1, Isya = 1</p>
               <table className="table-auto border-collapse w-full border text-xs">
                 <thead>
 									<tr>
@@ -240,7 +241,7 @@ export default function EventView({ masjidId }: { masjidId: string | number }) {
                               const absenSholat = row.absen?.[date]?.[sholat];
                               return (
                                 <td key={`${date}-${sholat}`} className="border p-2 text-center">
-                                  {absenSholat?.status === "Y" ? "✅" : "❌"}
+                                  {absenSholat?.status === "Y" ? <CircleCheck color="green" size={20} /> : <CircleX color="red" size={20} />}
                                 </td>
                               );
                             })}

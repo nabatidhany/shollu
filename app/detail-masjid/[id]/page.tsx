@@ -139,18 +139,20 @@ export default function MasjidDetail() {
               </Popover>
             </div>
 
-            <div className="flex gap-2 mb-4">
+            <div className="flex gap-2 mb-4 w-full">
               <Button
+                className="text-xs"
                 variant={sortMode === "JUMLAH" ? "default" : "outline"}
                 onClick={() => setSortMode("JUMLAH")}
               >
-                Sortir: Sholat Terbanyak
+                Sort: Sholat Terbanyak
               </Button>
               <Button
+                className="text-xs"
                 variant={sortMode === "NAMA" ? "default" : "outline"}
                 onClick={() => setSortMode("NAMA")}
               >
-                Sortir: Nama (A-Z)
+                Sort: Nama (A-Z)
               </Button>
             </div>
 
