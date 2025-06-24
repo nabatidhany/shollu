@@ -28,33 +28,69 @@ export default function Dashboard() {
   const [todayData, setTodayData] = useState(null);
   const [yesterdayData, setYesterdayData] = useState(null);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     let nowJakarta = dayjs().tz("Asia/Jakarta");
+  //     if (nowJakarta.hour() < 3) {
+  //       nowJakarta = nowJakarta.subtract(1, "day");
+  //     }
+
+  //     const todayStr = nowJakarta.format("YYYY-MM-DD");
+  //     const yesterdayStr = nowJakarta.subtract(1, "day").format("YYYY-MM-DD");
+
+  //     setTanggal(todayStr);
+
+  //     try {
+  //       const [todayRes, yestRes] = await Promise.all([
+  //         axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${todayStr}`),
+  //         axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${yesterdayStr}`)
+  //       ]);
+
+  //       setTodayData({ ...todayRes.data, tanggal: todayStr });
+  //       setYesterdayData({ ...yestRes.data, tanggal: yesterdayStr });
+  //     } catch (err) {
+  //       console.error("Gagal mengambil data:", err);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
-    const fetchData = async () => {
+    if (!tanggal) {
       let nowJakarta = dayjs().tz("Asia/Jakarta");
       if (nowJakarta.hour() < 3) {
         nowJakarta = nowJakarta.subtract(1, "day");
       }
-
       const todayStr = nowJakarta.format("YYYY-MM-DD");
-      const yesterdayStr = nowJakarta.subtract(1, "day").format("YYYY-MM-DD");
-
-      setTanggal(todayStr);
-
-      try {
-        const [todayRes, yestRes] = await Promise.all([
-          axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${todayStr}`),
-          axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${yesterdayStr}`)
-        ]);
-
-        setTodayData({ ...todayRes.data, tanggal: todayStr });
-        setYesterdayData({ ...yestRes.data, tanggal: yesterdayStr });
-      } catch (err) {
-        console.error("Gagal mengambil data:", err);
-      }
-    };
-
-    fetchData();
+      setTanggal(todayStr); // ini akan trigger useEffect kedua
+    }
   }, []);
+
+  useEffect(() => {
+    if (tanggal) {
+      fetchData(tanggal);
+    }
+  }, [tanggal]);
+
+
+
+  const fetchData = async (tgl: any) => {
+    const tglToday = dayjs.tz(tgl, "Asia/Jakarta").format("YYYY-MM-DD");
+    const tglYesterday = dayjs.tz(tgl, "Asia/Jakarta").subtract(1, "day").format("YYYY-MM-DD");
+
+    try {
+      const [todayRes, yestRes] = await Promise.all([
+        axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${tglToday}`),
+        axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${tglYesterday}`)
+      ]);
+
+      setTodayData({ ...todayRes.data, tanggal: tglToday });
+      setYesterdayData({ ...yestRes.data, tanggal: tglYesterday });
+    } catch (err) {
+      console.error("Gagal mengambil data:", err);
+    }
+  };
 
   if (!todayData || !yesterdayData) return <p className="text-center mt-10">Loading...</p>;
 
