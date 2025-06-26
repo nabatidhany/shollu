@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 
-export default function MasjidAccordion({ eventDate }) {
+export default function MasjidAccordion({ eventDate, setSelectedRegionalParent }: any) {
   const [masjidData, setMasjidData] = useState([]);
   const [regionalList, setRegionalList] = useState([]);
   const [selectedRegional, setSelectedRegional] = useState("Semua");
@@ -44,7 +44,7 @@ export default function MasjidAccordion({ eventDate }) {
       {/* Chip regional */}
       <div className="flex gap-2 flex-wrap overflow-auto">
         <button
-          onClick={() => setSelectedRegional("Semua")}
+          onClick={() => {setSelectedRegional("Semua"); setSelectedRegionalParent('Semua')}}
           className={`px-3 py-1 rounded-full ${
             selectedRegional === "Semua"
               ? "bg-yellow-600 text-white"
@@ -56,7 +56,7 @@ export default function MasjidAccordion({ eventDate }) {
         {regionalList.map((r) => (
           <button
             key={r}
-            onClick={() => setSelectedRegional(r)}
+            onClick={() => {setSelectedRegional(r); setSelectedRegionalParent(r)}}
             className={`px-3 py-1 rounded-full ${
               selectedRegional === r
                 ? "bg-yellow-600 text-white"

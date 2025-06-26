@@ -27,7 +27,7 @@ export default function Dashboard() {
   const [fokusSholat, setFokusSholat] = useState(sholatList);
   const [todayData, setTodayData] = useState(null);
   const [yesterdayData, setYesterdayData] = useState(null);
-
+  const [selectedRegional, setSelectedRegional] = useState("Semua");
   // useEffect(() => {
   //   const fetchData = async () => {
   //     let nowJakarta = dayjs().tz("Asia/Jakarta");
@@ -68,21 +68,34 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    if (tanggal) {
-      fetchData(tanggal);
+    if (tanggal && selectedRegional) {
+      fetchData(tanggal, selectedRegional);
     }
-  }, [tanggal]);
+  }, [tanggal, selectedRegional]);
 
 
 
-  const fetchData = async (tgl: any) => {
+  const fetchData = async (tgl: any, regional: any) => {
     const tglToday = dayjs.tz(tgl, "Asia/Jakarta").format("YYYY-MM-DD");
     const tglYesterday = dayjs.tz(tgl, "Asia/Jakarta").subtract(1, "day").format("YYYY-MM-DD");
-
+    let regionalId = 0;
+    switch (regional) {
+      case "Semua":
+        regionalId = 0;
+        break;
+      case "Padang":
+        regionalId = 1;
+        break;
+      case "Agam":
+        regionalId = 2;
+        break;
+      default:
+        regionalId = 0;
+    }
     try {
       const [todayRes, yestRes] = await Promise.all([
-        axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${tglToday}`),
-        axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${tglYesterday}`)
+        axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${tglToday}&regional_id=${regionalId}`),
+        axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${tglYesterday}&regional_id=${regionalId}`)
       ]);
 
       setTodayData({ ...todayRes.data, tanggal: tglToday });
@@ -154,7 +167,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <MasjidList eventDate={tanggal} />
+        <MasjidList eventDate={tanggal} setSelectedRegionalParent={setSelectedRegional} />
 
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
