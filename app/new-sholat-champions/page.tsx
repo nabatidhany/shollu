@@ -73,16 +73,17 @@ export default function Dashboard() {
     }
   }, [tanggal, selectedRegional]);
 
-
+  const buildUrl = (tgl: string, regionalId?: number) => {
+    const baseUrl = `https://api.shollu.com/api/statistics-absensi?tanggal=${tgl}`;
+    return regionalId !== undefined ? `${baseUrl}&regional_id=${regionalId}` : baseUrl;
+  };
 
   const fetchData = async (tgl: any, regional: any) => {
-    const tglToday = dayjs.tz(tgl, "Asia/Jakarta").format("YYYY-MM-DD");
-    const tglYesterday = dayjs.tz(tgl, "Asia/Jakarta").subtract(1, "day").format("YYYY-MM-DD");
-    let regionalId = 0;
+  const tglToday = dayjs.tz(tgl, "Asia/Jakarta").format("YYYY-MM-DD");
+  const tglYesterday = dayjs.tz(tgl, "Asia/Jakarta").subtract(1, "day").format("YYYY-MM-DD");
+
+  let regionalId: number | undefined;
     switch (regional) {
-      case "Semua":
-        regionalId = 0;
-        break;
       case "Padang":
         regionalId = 1;
         break;
@@ -90,12 +91,13 @@ export default function Dashboard() {
         regionalId = 2;
         break;
       default:
-        regionalId = 0;
+        regionalId = undefined; // Termasuk "Semua"
     }
+
     try {
       const [todayRes, yestRes] = await Promise.all([
-        axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${tglToday}&regional_id=${regionalId}`),
-        axios.get(`https://api.shollu.com/api/statistics-absensi?tanggal=${tglYesterday}&regional_id=${regionalId}`)
+        axios.get(buildUrl(tglToday, regionalId)),
+        axios.get(buildUrl(tglYesterday, regionalId)),
       ]);
 
       setTodayData({ ...todayRes.data, tanggal: tglToday });
@@ -215,7 +217,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white p-4 rounded shadow">
             <h2 className="text-lg font-semibold mb-2">Kehadiran vs Terdaftar</h2>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={350}>
               <PieChart>
                 <Pie data={hadirPie} dataKey="value" nameKey="name" outerRadius={100} label>
                   {hadirPie.map((entry, index) => (
