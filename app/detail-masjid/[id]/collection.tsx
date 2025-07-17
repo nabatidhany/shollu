@@ -44,12 +44,12 @@ export default function EventView({ masjidId }: { masjidId: string | number }) {
     fetch(`https://api.shollu.com/api/v1/collections-absensi/${selectedCollection}?date_from=${fromDate}&date_to=${toDate}`)
       .then(res => res.json())
       .then(data => {
-				const enrichedData = (data.data || []).map(row => {
+				const enrichedData = (data.data || []).map((row: any) => {
 					let subtotal = { subuh: 0, dzuhur: 0, ashar: 0, maghrib: 0, isya: 0 };
 					let total = 0;
 					let point = 0;
 
-					(data.dates || []).forEach(date => {
+					(data.dates || []).forEach((date: any) => {
 						let dailyPoint = 0;
 						["subuh", "dzuhur", "ashar", "maghrib", "isya"].forEach(sholat => {
 							const absenSholat = row.absen?.[date]?.[sholat];
